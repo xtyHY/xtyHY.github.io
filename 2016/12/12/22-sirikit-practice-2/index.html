@@ -426,7 +426,7 @@
 <p>比如: “发消息给y说z”，SiriKit分析后它属于<code>消息</code>意图域下的<code>发消息</code>意图，然后把y和z解析给你(具体解析了什么请往后看)</p>
 <h3 id="如何支持"><a href="#如何支持" class="headerlink" title="如何支持"></a>如何支持</h3><p>根据官方文档，你需要在创建后来指定配置你的App支持哪些<code>意图域</code>和其下面的哪些<code>意图</code>。用户说出的语句被解析成指令后，首先会匹配App名称，然后匹配解析出来的意图是否和你支持的一致，如果一致才会给你的App进行处理。</p>
 <p>比如: 你的App叫x，支持了<code>消息</code>意图域下的<code>发消息</code>意图。用户安装后说”使用x发消息”，SiriKit分析后用户想用名字是x的应用，意图是<code>消息</code>意图域下的<code>发消息</code>，而你的App支持了，就会让你进行处理（具体处理请往后看）。如果没装App或者没支持这个意图，那么你什么都收不到。</p>
-<h3 id="支持情况"><a href="#支持情况" class="headerlink" title="支持情况"></a>支持情况</h3><p>根据官方文档，目前SiriKit支持VoIP呼叫(3)、消息(3)、付款(2)、照片(2)、锻炼(5)、乘车预定(3)、CarPlay(7)和餐厅预定(5)共计8 Intent Domian(意图域)下共计30种Intent(意图, 括号内数字表示意图数量)，具体可查看:<a href="http://www.devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档翻译-意图域</a>。</p>
+<h3 id="支持情况"><a href="#支持情况" class="headerlink" title="支持情况"></a>支持情况</h3><p>根据官方文档，目前SiriKit支持VoIP呼叫(3)、消息(3)、付款(2)、照片(2)、锻炼(5)、乘车预定(3)、CarPlay(7)和餐厅预定(5)共计8 Intent Domian(意图域)下共计30种Intent(意图, 括号内数字表示意图数量)，具体可查看:<a href="http://www.devhy.com/2016/11/05/19-sirikit-document-translation-06/">SiriKit官方文档翻译-意图域</a>。</p>
 <h2 id="目前应用场景"><a href="#目前应用场景" class="headerlink" title="目前应用场景"></a>目前应用场景</h2><p>从国内来看，QQ支持的是消息/VoIP呼叫，Uber和滴滴支持的是乘车预定，Keep支持的是锻炼。</p>
 <h2 id="上手实践"><a href="#上手实践" class="headerlink" title="上手实践"></a>上手实践</h2><p>经过各种考虑后，决定从消息这个意图来尝试，优点有: 直观、聊天接入方便、应用场景多、参考文章/Demo好找(然而我错了,SiriKit真正实践的Demo和文章是真的少)。这次实现的<a href="https://github.com/xtyHY/SiriKit-Demo-Message" target="_blank" rel="noopener">Demo地址</a></p>
 <h3 id="创建扩展"><a href="#创建扩展" class="headerlink" title="创建扩展"></a>创建扩展</h3><p>其实际包含两项<code>Intents Extension</code>(处理逻辑, 必选)，<code>Intents UI Extension</code>(自定义展示, 可选)。在创建的<code>Intents</code>的时候，根据是否要自定义UI来勾选<code>Inclue UI Extension</code></p>
@@ -434,7 +434,7 @@
 <p>创建后是这样的：<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-2.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>创建完成后你会发现有示例代码和默认配置了消息相关的三个意图</p>
 <h3 id="Intent-Extension"><a href="#Intent-Extension" class="headerlink" title="Intent Extension"></a>Intent Extension</h3><p>//待补<br>协议方法实现<br>resolve 匹配数据并检查够不够，坑点，INPerson匹配的是手机联系人，很毒，必须实现<br>confirm 提示是否要进行处理，可选<br>handle 进行处理并告知处理结果，必须实现</p>
-<p>Intent Handle可以拆分来实现，同一个意图域的建议一起实现，不同意图域的建议拆分实现，以减少内存，注意对应的方法<a href="http://www.devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档翻译-意图域</a></p>
+<p>Intent Handle可以拆分来实现，同一个意图域的建议一起实现，不同意图域的建议拆分实现，以减少内存，注意对应的方法<a href="http://www.devhy.com/2016/11/05/19-sirikit-document-translation-06/">SiriKit官方文档翻译-意图域</a></p>
 <p>快速completion，否则会Siri会自己处理了</p>
 <h3 id="Intent-UI-Extension"><a href="#Intent-UI-Extension" class="headerlink" title="Intent UI Extension"></a>Intent UI Extension</h3><p>//待补<br>协议方法实现<br>根据协议方法传来的信息进行赋值处理<br>隐藏默认界面<br>快速进行界面搭建，否则会Siri会用默认界面自己处理</p>
 <h3 id="自定义词汇"><a href="#自定义词汇" class="headerlink" title="自定义词汇"></a>自定义词汇</h3><p>暂未尝试，一般健身应用用的多，因为不同的健身嘛，具体可看文档 <a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-4 指定自定义词汇</a></p>

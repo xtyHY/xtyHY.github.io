@@ -449,33 +449,33 @@
 <p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-01-ios-group-git-06.png" alt="01-ios-group-git-06"></p>
 <h3 id="初始化本地并提交到远端"><a href="#初始化本地并提交到远端" class="headerlink" title="初始化本地并提交到远端"></a>初始化本地并提交到远端</h3><ol>
 <li><p>打开终端，切换到需要处理的目录<br> 终端输入<code>cd 项目文件夹</code>并执行</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/ms/Desktop/Project/	devHy/iOS/iOSGitTest</span><br></pre></td></tr></table></figure>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="regexp">/Users/m</span>s<span class="regexp">/Desktop/</span><span class="keyword">Project</span><span class="regexp">/	devHy/i</span>OS<span class="regexp">/iOSGitTest</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>初始化本地it仓库<br> 终端输入<code>git init</code></p>
 </li>
 <li><p>加载远程git项目地址</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 项目地址</span><br></pre></td></tr></table></figure>
+ <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="keyword">add</span><span class="bash"> origin 项目地址</span></span><br></pre></td></tr></table></figure>
 <p> 创建完成后会获得两个地址：</p>
 <ul>
 <li>https地址<br>  <a href="https://git.oschina.net/devHY/iOSGitTest.git" target="_blank" rel="noopener">https://git.oschina.net/devHY/iOSGitTest.git</a></li>
 <li><p>SSH地址<br>  <a href="mailto:git@git.oschina.net" target="_blank" rel="noopener">git@git.oschina.net</a>:devHY/iOSGitTest.git</p>
 <p>那我需要输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://git.oschina.net/devHY/iOSGitTest.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https:<span class="regexp">//gi</span>t.oschina.net<span class="regexp">/devHY/i</span>OSGitTest.git</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>先获取主分支（master分支）</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull -u origin master</span><br></pre></td></tr></table></figure>
+ <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull -u origin <span class="literal">master</span></span><br></pre></td></tr></table></figure>
 <p> 这个过程主要看网速和你的远程工程的大小</p>
 </li>
 <li><p>添加待提交文件</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//.表示提交所有文件</span><br><span class="line">git add .</span><br></pre></td></tr></table></figure>
+ <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.表示提交所有文件</span></span><br><span class="line">git <span class="keyword">add</span> .</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>说明提交的改动标记</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;说明提交&quot; 并执行</span><br></pre></td></tr></table></figure>
+ <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m <span class="string">"说明提交"</span> 并执行</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用设置的远程仓库提交到master分支</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+ <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> master</span><br></pre></td></tr></table></figure>
 <p> 这一步是看你的网速和本地待提交工程的大小</p>
 <p> 完整步骤终端截图<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-01-ios-group-git-07.png" alt="01-ios-group-git-07"></p>
 <p> 提交完成刷新git.oschina.net的项目界面，可以看到本地的代码已经提交到远程git仓库了<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-01-ios-group-git-08.png" alt="01-ios-group-git-08"></p>
