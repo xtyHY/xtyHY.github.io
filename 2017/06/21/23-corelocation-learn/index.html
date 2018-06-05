@@ -1,0 +1,1192 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Core Location," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="我在哪？我是谁？我要去哪？">
+<meta name="keywords" content="iOS,Core Location">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我在哪？ Core Location告诉你">
+<meta property="og:url" content="http://www.devhy.com/2017/06/21/23-corelocation-learn/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="我在哪？我是谁？我要去哪？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_intro.gif">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_00.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_01.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_02.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_03.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_03-01.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_04-1.png?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_05.png?imageMogr2/thumbnail/!50p">
+<meta property="og:updated_time" content="2017-12-21T03:01:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我在哪？ Core Location告诉你">
+<meta name="twitter:description" content="我在哪？我是谁？我要去哪？">
+<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_intro.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2017/06/21/23-corelocation-learn/"/>
+
+
+
+
+
+  <title>我在哪？ Core Location告诉你 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2017/06/21/23-corelocation-learn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">我在哪？ Core Location告诉你</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T15:40:10+08:00">
+                2017-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/21/23-corelocation-learn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/21/23-corelocation-learn/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_intro.gif" alt="CoreLocationLearn_170621_intro"></p>
+<blockquote>
+<p>我在哪？我是谁？我要去哪？</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="定位简述"><a href="#定位简述" class="headerlink" title="定位简述"></a>定位简述</h2><p>设备通过<a href="http://baike.baidu.com/item/%E8%BE%85%E5%8A%A9%E5%85%A8%E7%90%83%E5%8D%AB%E6%98%9F%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F" target="_blank" rel="noopener">AGPS</a>、蓝牙(<a href="http://baike.baidu.com/item/ibeacon" target="_blank" rel="noopener">iBeancon</a>)以及WiFi进行定位。</p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_00.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_00"></p>
+<ul>
+<li><strong>GPS</strong> 在搜星条件比较好的情况下精度在10米~20米左右</li>
+<li><strong>基站定位</strong> 主要看基站密度，一般在百米~数公里</li>
+<li><strong>AGPS</strong> 利用手机基站信号结合GPS卫星信号，加快定位速度</li>
+<li><strong>蓝牙定位</strong> 主要应用于室内定位，利用蓝牙设备持续发送的广播帧实现</li>
+<li><strong>WiFi定位</strong> 利用扫描附近wifi时获取到的多个mac地址与服务器中的mac地址库匹配，加上信号强弱计算从而定位，服务器中的mac地址多数为地图街景车扫描到的</li>
+</ul>
+<h2 id="初窥"><a href="#初窥" class="headerlink" title="初窥"></a>初窥</h2><p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_01.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_01"></p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLAvailability</td>
+<td>定位可用性(不需开发来引用进行使用)</td>
+</tr>
+<tr>
+<td>CLErrorDomain、CLError</td>
+<td>报错Domain和type声明</td>
+</tr>
+<tr>
+<td>CLRegion <br> CLCircularRegion <br> CLBeaconRegion</td>
+<td>位置范围</td>
+</tr>
+<tr>
+<td>CLHeading</td>
+<td>朝向信息</td>
+</tr>
+<tr>
+<td>CLLocation</td>
+<td>位置信息</td>
+</tr>
+<tr>
+<td>CLLocationManager</td>
+<td>定位管理类</td>
+</tr>
+<tr>
+<td>CLLocationManagerDelegate</td>
+<td>定位管理类协议</td>
+</tr>
+<tr>
+<td>CLLocationManager+CLVisitExtensions</td>
+<td>定位管理类扩展方法</td>
+</tr>
+<tr>
+<td>CLPlacemark</td>
+<td>反地理编码信息</td>
+</tr>
+<tr>
+<td>CLGeocoder</td>
+<td>(反)地理编码</td>
+</tr>
+<tr>
+<td>CLVisit</td>
+<td>访问位置信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="定位权限"><a href="#定位权限" class="headerlink" title="定位权限"></a>定位权限</h3><h4 id="iOS-8之前"><a href="#iOS-8之前" class="headerlink" title="iOS 8之前"></a>iOS 8之前</h4><ol>
+<li>前台定位不需要通过特定方法请求权限</li>
+<li>后台定位需要在target配置-Capabilities-Background Modes开启，并勾选Location updates。</li>
+</ol>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_02.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_02"></p>
+<h4 id="iOS-8之后"><a href="#iOS-8之后" class="headerlink" title="iOS 8之后"></a>iOS 8之后</h4><p>需要在info.plist中设置:</p>
+<ul>
+<li>前台定位: <code>NSLocationWhenInUseUsageDescription</code></li>
+<li>后台定位: 前台定位基础上 + <code>NSLocationAlwaysUsageDescription</code></li>
+</ul>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_03.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_03"></p>
+<ol>
+<li>前台定位需要通过<code>CLLocationManager</code>的对象方法<code>-requestWhenInUseAuthorization</code>请求获取权限</li>
+<li>后台定位<br> 有一下两种方法，前一种在App进入后台后，状态栏会展示蓝色条（“xxx”正在使用使用您的位置信息），后一种不会。<ul>
+<li>在前台定位基础上，在Background Modes中勾选Location updates</li>
+<li>通过<code>CLLocationManager</code>的对象方法<code>-requestWhenInUseAuthorization</code>请求获取前台定位权限</li>
+</ul>
+</li>
+</ol>
+<h4 id="iOS-11之后"><a href="#iOS-11之后" class="headerlink" title="iOS 11之后"></a>iOS 11之后</h4><p>需要在info.plist中设置:</p>
+<ul>
+<li>前台定位: 与iOS8一样</li>
+<li>后台定位: 在iOS8基础上增加<code>NSLocationAlwaysAndWhenInUseUsageDescription</code> </li>
+</ul>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_03-01.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_03-01"></p>
+<h4 id="权限检查"><a href="#权限检查" class="headerlink" title="权限检查"></a>权限检查</h4><ol>
+<li><p>通过<code>CLLocationManager</code>的类方法检查定位服务开启以及定位授权情况</p>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取定位服务是否开启</span></span><br><span class="line"><span class="built_in">BOOL</span> enable = [<span class="built_in">CLLocationManager</span> locationServicesEnabled];</span><br><span class="line"></span><br><span class="line"><span class="comment">//定位授权情况</span></span><br><span class="line"><span class="built_in">CLAuthorizationStatus</span> status = [<span class="built_in">CLLocationManager</span> authorizationStatus];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过<code>CLLocationManager</code>的代理方法，监听授权变化情况</p>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didChangeAuthorizationStatus:(<span class="built_in">CLAuthorizationStatus</span>)status &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"%ld"</span>, status);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>权限状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kCLAuthorizationStatusNotDetermined</td>
+<td>用户还未决定是否使用定位</td>
+</tr>
+<tr>
+<td>kCLAuthorizationStatusRestricted</td>
+<td>定位服务授权状态是受限制<br> (可能不是用户拒绝的)</td>
+</tr>
+<tr>
+<td>kCLAuthorizationStatusDenied</td>
+<td>用户拒绝授权 <br> 设置中定位服务关闭</td>
+</tr>
+<tr>
+<td>kCLAuthorizationStatusAuthorizedAlways</td>
+<td>允许任何时候定位</td>
+</tr>
+<tr>
+<td>kCLAuthorizationStatusAuthorizedWhenInUse</td>
+<td>允许App运行时定位</td>
+</tr>
+<tr>
+<td>kCLAuthorizationStatusAuthorized</td>
+<td>已废弃，等同<br> kCLAuthorizationStatusAuthorizedAlways</td>
+</tr>
+</tbody>
+</table>
+<h3 id="前台定位"><a href="#前台定位" class="headerlink" title="前台定位"></a>前台定位</h3><p>使用<code>CLLocationManager</code>的对象方法<code>-startUpdatingLocation</code>获取位置信息，通过其代理方法获取定位信息与错误信息，定位会根据配置的精度和更新距离自行处理更新位置信息的频率，鉴于定位对电量的消耗，注意在适当的时候调用<code>-stopUpdatingLocation</code>进行停止。</p>
+<ol>
+<li><p>进行前台定位<br> 可以通过对象属性<code>desiredAccuracy</code>设置精度，<code>distanceFilter</code>设置触发回调更新的距离</p>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager = [[<span class="built_in">CLLocationManager</span> alloc] init];</span><br><span class="line"><span class="keyword">self</span>.manager.delegate = <span class="keyword">self</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//配置精度</span></span><br><span class="line"><span class="comment">//定位精度，精度高，使用点多，默认为kCLLocationAccuracyBest</span></span><br><span class="line"><span class="keyword">self</span>.manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;</span><br><span class="line"></span><br><span class="line"><span class="comment">//地图上每隔多少米才更新一次，低于这个距离的定位不会回调delegate</span></span><br><span class="line"><span class="keyword">self</span>.manager.distanceFilter = <span class="number">200</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//进行定位</span></span><br><span class="line"><span class="comment">//持续请求，需要在合适的时候使用-stopUpdatingLocation停止</span></span><br><span class="line">[<span class="keyword">self</span>.manager startUpdatingLocation];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回调定位结果<br> 通过<code>locationManager:didUpdateLocations:</code>获取定位结果信息，位置信息是一个数组，其可能没有或包含一个或者多个<code>CLLocation</code>位置信息对象，结合App用途实际情况进行使用。<br> 通过<code>locationManager:didFailWithError:</code>获取定位失败的错误信息，error相关的类型声明在<code>CLError</code>以及<code>CLErrorDomain</code>中可以看到。</p>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定位结果回调</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didUpdateLocations:(<span class="keyword">nonnull</span> <span class="built_in">NSArray</span>&lt;<span class="built_in">CLLocation</span> *&gt; *)locations &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"回调位置数组--&gt;%@\n"</span>,locations);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定位失败回调</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didFailWithError:(<span class="built_in">NSError</span> *)error &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"定位失败错误信息:%@\n"</span>, error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>补充</strong><br>iOS 9新增了定位方法<code>-requestLocation</code>，此方法会以精度从低到高进行请求定位，以获取到精度最高的位置信息，通过代理方法返回位置信息。<br>如果最终获得到的位置信息精度不够高的话，依然会在超时后通过代理方法返回位置信息。如果未获得到位置信息，会通过失败代理进行回调(使用此方法定位必须实现失败回调)。<br>此方法只会回调一次定位结果，不需要使用<code>-stopUpdatingLocation</code>进行停止。<br>注意，如果与<code>-startUpdatingLocation</code>同时使用，本方法的定位请求会被取消。</p>
+<h3 id="后台定位"><a href="#后台定位" class="headerlink" title="后台定位"></a>后台定位</h3><p>主要是请求用户权限上的区别，定位方法依然是使用<code>-startUpdatingLocation</code>开启定位，然后通过代理方法<code>locationManager:didUpdateLocations:</code>获取定位结果信息</p>
+<p>在iOS 9后<code>CLLocationManager</code>新增了一个<code>allowsBackgroundLocationUpdates</code>的属性，默认为NO，如果在未设置<em>target配置-Capabilities-开启Background Modes并勾选Location updates</em>的情况下，需要进行后台定位，必须给这个属性设置为YES；若在工程中配置后台模式，此值页推荐是设置为YES，虽然NO的时候影响也不大。</p>
+<h3 id="范围监听"><a href="#范围监听" class="headerlink" title="范围监听"></a>范围监听</h3><p>通过设定一个/多个地理封闭区域，结合定位信息来判断设备进入/离开所设定的区域，并在这些时候做出一些响应。</p>
+<ol>
+<li>使用<code>CLLocationManager</code>类方法<code>+isMonitoringAvailableForClass:</code>判断是否可以进行监听</li>
+<li>创建<code>CLRegion</code>/<code>CLCircularRegion</code>对象设定一个封闭区域</li>
+<li>使用<code>-startMonitoringForRegion:</code>方法开始监听位置</li>
+<li>实现代理方法获取监听信息</li>
+</ol>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_04-1.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_04"></p>
+<p><strong>启动监听</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否可以监听</span></span><br><span class="line"><span class="keyword">if</span> ([<span class="built_in">CLLocationManager</span> isMonitoringAvailableForClass:[<span class="built_in">CLCircularRegion</span> <span class="keyword">class</span>]]) &#123;</span><br><span class="line">	<span class="comment">//监听区域中心</span></span><br><span class="line">	<span class="built_in">CLLocationCoordinate2D</span> coordinate = <span class="built_in">CLLocationCoordinate2DMake</span>(+<span class="number">37.33233141</span>,<span class="number">-122.03121860</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//监听区域的半径</span></span><br><span class="line">	<span class="built_in">CLLocationDistance</span> distance = <span class="number">300</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"最大监听范围 %lf"</span>, <span class="keyword">self</span>.manager.maximumRegionMonitoringDistance);</span><br><span class="line">        </span><br><span class="line">	<span class="comment">//创建监听区域对象</span></span><br><span class="line">	<span class="keyword">self</span>.region = [[<span class="built_in">CLCircularRegion</span> alloc] initWithCenter:coordinate radius:distance identifier:<span class="string">@"devHY"</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">//启动监听</span></span><br><span class="line">	[<span class="keyword">self</span>.manager startMonitoringForRegion:<span class="keyword">self</span>.region];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"监听区域不可用"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>监听回调</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 进入监听区域回调</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didEnterRegion:(<span class="built_in">CLRegion</span> *)region &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"进入区域--&gt; %@"</span>, region);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 离开监听区域回调</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didExitRegion:(<span class="built_in">CLRegion</span> *)region &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"离开区域--&gt; %@"</span>, region);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始监听区域</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didStartMonitoringForRegion:(<span class="built_in">CLRegion</span> *)region &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"区域开始监听--&gt; %@"</span>,region);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听区域失败回调</span></span><br><span class="line">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager monitoringDidFailForRegion:(<span class="built_in">CLRegion</span> *)region withError:(<span class="built_in">NSError</span> *)error &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"区域%@监听失败--&gt; %@"</span>,region ,error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以通过<code>-requestStateForRegion:</code>方法获取当前定位与某个区域的状态，结果会通过代理方法<code>locationManager:didDetermineState:region:</code>进行回调</p>
+<h3 id="方位指向"><a href="#方位指向" class="headerlink" title="方位指向"></a>方位指向</h3><p>通过CoreLocation也可以获取到设备的方位，使用<code>CLLocationManager</code>的对象方法<code>-startUpdatingHeading</code>可以实时获取设备方位。<br>其结果通过代理方法<code>locationManager:didUpdateHeading:</code>进行回调，返回一个<code>CLHeading</code>类的对象。</p>
+<p><code>CLHeading</code>对象主要属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>简述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>magneticHeading</td>
+<td>磁北极(0~359.9),0为磁北极</td>
+</tr>
+<tr>
+<td>trueHeading</td>
+<td>真北极(0~359.9),0为真北极</td>
+</tr>
+<tr>
+<td>headingAccuracy</td>
+<td>方位精度</td>
+</tr>
+<tr>
+<td>x</td>
+<td>地磁测量的x</td>
+</tr>
+<tr>
+<td>y</td>
+<td>地磁测量的y</td>
+</tr>
+<tr>
+<td>z</td>
+<td>地磁测量的z</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>对象产生的时间戳</td>
+</tr>
+</tbody>
+</table>
+<h2 id="扩展使用"><a href="#扩展使用" class="headerlink" title="扩展使用"></a>扩展使用</h2><p>CoreLocation中也提供了基本的地理编码与反地理编码功能，可以将地址字符串解析为一个<code>CLLocation</code>对象的位置信息，也可将位置信息转义成我们日常使用的文字形式结构化的地址信息以<code>CLPlacemark</code>对象进行呈现。如果需要更多的功能以及地图相关就需要结合<code>MapKit</code>来使用了。</p>
+<h3 id="地理编码"><a href="#地理编码" class="headerlink" title="地理编码"></a>地理编码</h3><p><a href="http://baike.baidu.com/item/%E5%9C%B0%E7%90%86%E7%BC%96%E7%A0%81" target="_blank" rel="noopener">地理编码</a>是将统计资料或是地址信息建立空间坐标关系的过程，包含: 正向地理编码、反向地理编码、向量式地理编码、网格式地理编码。在CoreLocation框架中<code>CLGeocoder</code>类提供了<strong>正向地理编码</strong>和<strong>反向地理编码</strong>两种常用的地理编码功能</p>
+<h4 id="正向地理编码"><a href="#正向地理编码" class="headerlink" title="正向地理编码"></a>正向地理编码</h4><p>正向地理编码是将地址/地名描述转化为地球表面上相应位置，如输入<em>“北京”</em>，被转化为<em>“中国 北京市 +39.90498900,+116.40528500”</em>。</p>
+<p>使用<code>CLGeocoder</code>类的以下三种对象方法可以进行正向地理编码，结果会通过block进行回调<code>CLPlacemark</code>对象的数组以及错误信息。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//处理地理编码的对象</span></span><br><span class="line"><span class="built_in">CLGeocoder</span> *geoCoder = [[<span class="built_in">CLGeocoder</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用通讯录获取的地址字典进行编码</span></span><br><span class="line">[geoCoder geocodeAddressDictionary:addressDict completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用地名字符串进行编码</span></span><br><span class="line">[geoCoder geocodeAddressString:placeName completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用地名字符串进行编码+限定区域(CLRegion)</span></span><br><span class="line">[geoCoder geocodeAddressString:placeName inRegion:region completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h4 id="反向地理编码"><a href="#反向地理编码" class="headerlink" title="反向地理编码"></a>反向地理编码</h4><p>反向地理编码是将地球表面的地址坐标转换为标准地址的过程，如输入<em>“+39.90498900,+116.40528500”</em>，被转化为<em>“中国 北京市 +39.90498900,+116.40528500”</em>。</p>
+<p>使用<code>CLGeocoder</code>类的对象方法<code>reverseGeocodeLocation:completionHandler:</code>可以进行反向地理编码，结果会通过block进行回调<code>CLPlacemark</code>对象的数组以及错误信息。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过经纬度构建一个CLLocation对象，也可以是通过之前定位获取到的</span></span><br><span class="line"><span class="built_in">CLLocation</span> *location = [[<span class="built_in">CLLocation</span> alloc] initWithLatitude:latitude2 longitude:longtitude2];</span><br><span class="line"></span><br><span class="line"><span class="comment">//将CLLocation对象反向地理位置编码</span></span><br><span class="line"><span class="built_in">CLGeocoder</span> *geoCoder = [[<span class="built_in">CLGeocoder</span> alloc] init];</span><br><span class="line">[geoCoder reverseGeocodeLocation:location completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"反向地理编码 -&gt; 结果:%@ \n\t错误:%@\n"</span>, placemarks, error);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h4 id="CLPlacemark"><a href="#CLPlacemark" class="headerlink" title="CLPlacemark"></a>CLPlacemark</h4><table>
+<thead>
+<tr>
+<th>location</th>
+<th>CLLocation对象<br>标准的位置信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>region</td>
+<td>CLRegion对象，范围</td>
+</tr>
+<tr>
+<td>timeZone</td>
+<td>时区</td>
+</tr>
+<tr>
+<td>addressDictionary</td>
+<td>可用于保存到通讯录<br>AddressBookUI</td>
+</tr>
+<tr>
+<td>name</td>
+<td>地名</td>
+</tr>
+<tr>
+<td>thoroughfare</td>
+<td>街道名</td>
+</tr>
+<tr>
+<td>subThoroughfare</td>
+<td>街道相关信息，例如门牌等</td>
+</tr>
+<tr>
+<td>locality</td>
+<td>城市名</td>
+</tr>
+<tr>
+<td>subLocality</td>
+<td>城市下属区名</td>
+</tr>
+<tr>
+<td>administrativeArea</td>
+<td>州，对应中国的省份名称</td>
+</tr>
+<tr>
+<td>subAdministrativeArea</td>
+<td>其他行政区域信息</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>邮政编码</td>
+</tr>
+<tr>
+<td>ISOcountryCode</td>
+<td>国家ISO码，如中国CN</td>
+</tr>
+<tr>
+<td>country</td>
+<td>国家</td>
+</tr>
+<tr>
+<td>inlandWater</td>
+<td>水源、湖泊</td>
+</tr>
+<tr>
+<td>ocean</td>
+<td>海洋</td>
+</tr>
+<tr>
+<td>areasOfInterest</td>
+<td>关联的或利益相关的地标</td>
+</tr>
+</tbody>
+</table>
+<p>如：浙江杭州梦想小镇定位反地理编码后结果</p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-06-22-CoreLocationLearn_170621_05.png?imageMogr2/thumbnail/!50p" alt="CoreLocationLearn_170621_05"></p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ol>
+<li>直辖市在之前通过<code>subLocality</code>为nil来判断，但最近接口结果变成了，直辖市的<code>subLocality</code>和<code>administrativeArea</code>是相同的，并不为会空。</li>
+<li><p>CLGeocoder会根据设备语言进行请求，使返回的CLPlacemark对象的信息是本地化的语言，而且并没有开放接口用于在请求前设置语言。<br> 如果需要在设置语言为英文的设备上，依然返回中文的CLPlacemark对象信息，可以通过如下方法设置</p>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存 Device 的现语言 (英语 法语 等)</span></span><br><span class="line"><span class="built_in">NSMutableArray</span> *userDefaultLanguages = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"AppleLanguages"</span>];</span><br><span class="line"><span class="comment">// 强行设置为中文</span></span><br><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setObject:@[<span class="string">@"zh-hans"</span>] forKey:<span class="string">@"AppleLanguages"</span>];</span><br><span class="line">    </span><br><span class="line"><span class="comment">//开始请求反向地理编码</span></span><br><span class="line"><span class="built_in">CLGeocoder</span> *geoCoder = [[<span class="built_in">CLGeocoder</span> alloc] init];</span><br><span class="line">[geoCoder reverseGeocodeLocation:location completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"反向地理编码 -&gt; 结果:%@ \n\t错误:%@\n"</span>, placemarks, error);</span><br><span class="line">&#125;];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 还原Device 的语言(延迟0.5秒，如果直接执行有很大概率依然是原设备语言)</span></span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">0.5</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">	[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setObject:userDefaultLanguages forKey:<span class="string">@"AppleLanguages"</span>];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="距离计算"><a href="#距离计算" class="headerlink" title="距离计算"></a>距离计算</h3><p>通过<code>CLLocation</code>的对象方法<code>distanceFromLocation:</code>可以计算两个Location的距离</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//天津loaction</span></span><br><span class="line"><span class="built_in">CLLocation</span> *fromLocation = [[<span class="built_in">CLLocation</span> alloc] initWithLatitude:<span class="number">39.159042</span> longitude:<span class="number">117.204498</span>];</span><br><span class="line"><span class="comment">//北京location</span></span><br><span class="line"><span class="built_in">CLLocation</span> *toLocation   = [[<span class="built_in">CLLocation</span> alloc] initWithLatitude:<span class="number">39.904989</span> longitude:<span class="number">116.405285</span>];</span><br><span class="line"><span class="comment">//计算两者的距离</span></span><br><span class="line"><span class="built_in">CLLocationDistance</span> distance = [fromLocation distanceFromLocation:toLocation];</span><br></pre></td></tr></table></figure>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><ol>
+<li><a href="https://github.com/xtyHY/CoreLocationLearn20170531" target="_blank" rel="noopener">Github - CoreLocationLearn20170531)</a></li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497" target="_blank" rel="noopener">Location and Maps Programming Guide</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3" target="_blank" rel="noopener">Information Property List Key Reference - UIRequiredDeviceCapabilities</a></li>
+<li><a href="https://github.com/intuit/LocationManager" target="_blank" rel="noopener">LocationManager</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Core-Location/" rel="tag"># Core Location</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/12/22-sirikit-practice-2/" rel="next" title="SiriKit实践 - 基于融云实现使用SiriKit发送消息">
+                <i class="fa fa-chevron-left"></i> SiriKit实践 - 基于融云实现使用SiriKit发送消息
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/21/24-iOS11-and-xcode9-adapt/" rel="prev" title="iOS11和Xcode9踩坑记录">
+                iOS11和Xcode9踩坑记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位简述"><span class="nav-number">1.</span> <span class="nav-text">定位简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初窥"><span class="nav-number">2.</span> <span class="nav-text">初窥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">3.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定位权限"><span class="nav-number">3.1.</span> <span class="nav-text">定位权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-8之前"><span class="nav-number">3.1.1.</span> <span class="nav-text">iOS 8之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-8之后"><span class="nav-number">3.1.2.</span> <span class="nav-text">iOS 8之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-11之后"><span class="nav-number">3.1.3.</span> <span class="nav-text">iOS 11之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限检查"><span class="nav-number">3.1.4.</span> <span class="nav-text">权限检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前台定位"><span class="nav-number">3.2.</span> <span class="nav-text">前台定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台定位"><span class="nav-number">3.3.</span> <span class="nav-text">后台定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围监听"><span class="nav-number">3.4.</span> <span class="nav-text">范围监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方位指向"><span class="nav-number">3.5.</span> <span class="nav-text">方位指向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展使用"><span class="nav-number">4.</span> <span class="nav-text">扩展使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地理编码"><span class="nav-number">4.1.</span> <span class="nav-text">地理编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正向地理编码"><span class="nav-number">4.1.1.</span> <span class="nav-text">正向地理编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反向地理编码"><span class="nav-number">4.1.2.</span> <span class="nav-text">反向地理编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CLPlacemark"><span class="nav-number">4.1.3.</span> <span class="nav-text">CLPlacemark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充"><span class="nav-number">4.1.4.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#距离计算"><span class="nav-number">4.2.</span> <span class="nav-text">距离计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">5.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2017/06/21/23-corelocation-learn/';
+          this.page.identifier = '2017/06/21/23-corelocation-learn/';
+          this.page.title = '我在哪？ Core Location告诉你';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

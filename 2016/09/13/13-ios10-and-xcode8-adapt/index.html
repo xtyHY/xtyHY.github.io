@@ -1,0 +1,965 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS 10,Xcode8," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="iOS10和Xcode8的GM版放出后，iOS10适配工作就非常重要了。Xcode8下完打开项目后就陆续碰到了一些坑，本文对此这些坑做一些记录。">
+<meta name="keywords" content="iOS 10,Xcode8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS10和Xcode8踩坑记录">
+<meta property="og:url" content="http://www.devhy.com/2016/09/13/13-ios10-and-xcode8-adapt/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="iOS10和Xcode8的GM版放出后，iOS10适配工作就非常重要了。Xcode8下完打开项目后就陆续碰到了一些坑，本文对此这些坑做一些记录。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt00.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt01-1.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt02.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt03.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt04.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt05.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt06.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt07.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt08.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt09.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt10.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt11.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt12.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt13.png?imageView2/2/h/400">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt15.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt16.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt17.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt18.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt19.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt20.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt21.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt22.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt14.png?imageView2/2/h/400">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt23.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt24.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt25.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt26.png">
+<meta property="og:updated_time" content="2016-10-25T01:31:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS10和Xcode8踩坑记录">
+<meta name="twitter:description" content="iOS10和Xcode8的GM版放出后，iOS10适配工作就非常重要了。Xcode8下完打开项目后就陆续碰到了一些坑，本文对此这些坑做一些记录。">
+<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt00.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2016/09/13/13-ios10-and-xcode8-adapt/"/>
+
+
+
+
+
+  <title>iOS10和Xcode8踩坑记录 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2016/09/13/13-ios10-and-xcode8-adapt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS10和Xcode8踩坑记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T15:02:37+08:00">
+                2016-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/13/13-ios10-and-xcode8-adapt/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/13/13-ios10-and-xcode8-adapt/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS10和Xcode8的GM版放出后，iOS10适配工作就非常重要了。Xcode8下完打开项目后就陆续碰到了一些坑，本文对此这些坑做一些记录。</p>
+<a id="more"></a>
+<h2 id="无法打开的xib和storyboard"><a href="#无法打开的xib和storyboard" class="headerlink" title="无法打开的xib和storyboard"></a>无法打开的xib和storyboard</h2><p>由于同事们还在Xcode7.3上开发，然而你用Xcode8打开xib或storyboard后，会弹出一个选择机型的框，如果想要用Xcode8改xib或storyboard，就必须chosse<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt00.png" alt="ios10-and-xcode8-adapt00"></p>
+<p>然而你chosse后，同事用7.3去打开这个xib或者storyboard你会发现，打不开了，这不是坑爹吗？<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt01-1.png" alt="ios10-and-xcode8-adapt01"></p>
+<p>不过也可以通过source code去删除掉版本限制，不过建议还是不要这样做。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt02.png" alt="ios10-and-xcode8-adapt02"></p>
+<h2 id="控制台的疯狂"><a href="#控制台的疯狂" class="headerlink" title="控制台的疯狂"></a>控制台的疯狂</h2><h3 id="控制台输出不相关信息"><a href="#控制台输出不相关信息" class="headerlink" title="控制台输出不相关信息"></a>控制台输出不相关信息</h3><p>跑起项目后发现控制台在疯狂输出，根本无法看到自己的打印输出<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt03.png" alt="ios10-and-xcode8-adapt03"></p>
+<p>需要EditScheme -&gt; 左侧Run -&gt; 右侧Arguments -&gt; 下方Environment Variables -&gt; 添加 <code>OS_ACTIVITY_MODE = disable</code></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt04.png" alt="ios10-and-xcode8-adapt04"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt05.png" alt="ios10-and-xcode8-adapt05"></p>
+<h3 id="真机调试打印显示不全（2016-10-24补充）"><a href="#真机调试打印显示不全（2016-10-24补充）" class="headerlink" title="真机调试打印显示不全（2016.10.24补充）"></a>真机调试打印显示不全（2016.10.24补充）</h3><p>这几天调试时发现，使用Xcode8+iOS10调试时，首先是真机输出打印不输出，后面发现是因为上面设置的<code>OS_ACTIVITY_MODE = disable</code>影响到了打印输出，取消这个设置后后虽然能打印了。<br></p>
+<p>但是又出现一个新问题：在iOS10真机调试打印请求回调的json居然截断了（显示不全），但是Xcode8+iOS9却正常，经过一番查询，解决办法是在pch里用printf重新定义一下NSLog。<br></p>
+<p>具体代码如下：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#define NSLog(format, ...) \</span></span><br><span class="line"><span class="keyword">do</span> &#123; \</span><br><span class="line">printf(<span class="string">"\n&lt;%s : %d : %s&gt;-: %s"</span>, \</span><br><span class="line">[[[<span class="built_in">NSString</span> stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], \</span><br><span class="line">__LINE__, \</span><br><span class="line">__FUNCTION__, \</span><br><span class="line">[[<span class="built_in">NSString</span> stringWithFormat:format, <span class="meta">##__VA_ARGS__] UTF8String]); \</span></span><br><span class="line">&#125; <span class="keyword">while</span>(<span class="number">0</span>)</span><br><span class="line"><span class="meta">#else</span></span><br><span class="line"><span class="meta">#define NSLog(format, ...) do&#123; &#125; while(0)</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="注释失效了😱"><a href="#注释失效了😱" class="headerlink" title="注释失效了😱"></a>注释失效了😱</h2><p>终端来一发<code>sudo /usr/libexec/xpccachectl</code>然后重启</p>
+<h3 id="新增的文档注释"><a href="#新增的文档注释" class="headerlink" title="新增的文档注释"></a>新增的文档注释</h3><p>Xcode8里加入了喵神的文档注释，但是貌似功能没有之前插件的强，新的文档注释使用快捷键<code>Option + Command + /</code><br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt06.png" alt="ios10-and-xcode8-adapt06"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt07.png" alt="ios10-and-xcode8-adapt07"></p>
+<p>不过这个文档注释并不能像喵神的插件一样随意使用，如下图的时候就报提示没找到需要进行文档注释的东西😂<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt08.png" alt="ios10-and-xcode8-adapt08"></p>
+<h2 id="label显示不全"><a href="#label显示不全" class="headerlink" title="label显示不全"></a>label显示不全</h2><p>详见上一篇 <a href="http://devhy.com/2016/09/11/11-ios10-label-incomplete-display/" target="_blank" rel="noopener">iOS10的label文字显示不全问题</a></p>
+<h2 id="相机、相册、定位…各种崩"><a href="#相机、相册、定位…各种崩" class="headerlink" title="相机、相册、定位…各种崩"></a>相机、相册、定位…各种崩</h2><p>在排查上个label显示不全问题的时候，发现调相机崩了，调相册崩了，调定位又崩了，但是xcode7打的包在iOS10手机安装使用却是正常，什么👻</p>
+<p>这次Xcode8对调用各种隐私权限做了控制，在调试的时候，需要在info.plist里声明你的权限和对应的提示文案，比如相册权限<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt09.png" alt="ios10-and-xcode8-adapt09"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt10.png" alt="ios10-and-xcode8-adapt10"></p>
+<h3 id="其他权限"><a href="#其他权限" class="headerlink" title="其他权限"></a>其他权限</h3><p>可以在info.plist值看到所有Private - 开头的都是<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt11.png" alt="ios10-and-xcode8-adapt11"><br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-19-ios10-and-xcode8-adapt12.png" alt="ios10-and-xcode8-adapt12"></p>
+<h2 id="xib和storyboard布局混乱"><a href="#xib和storyboard布局混乱" class="headerlink" title="xib和storyboard布局混乱"></a>xib和storyboard布局混乱</h2><h3 id="问题详述"><a href="#问题详述" class="headerlink" title="问题详述"></a>问题详述</h3><p>使用Xcode8偶然打开了项目中的storyboard文件，然后跑起项目，却发现界面全乱了<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt13.png?imageView2/2/h/400" alt="ios10-and-xcode8-adapt13"></p>
+<h3 id="造成原因"><a href="#造成原因" class="headerlink" title="造成原因"></a>造成原因</h3><p>经过一番搜索后，发现Xcode8对xib和storyboard做出了一些修改，似的在<code>awakeFromNib</code>和<code>viewDidLoad</code>方法中拿自己拖上去的控件的frame均变成了<code>(0, 0, 1000, 1000)</code>，若直接在此使用控件frame进行二次修改，如：修改A控件的宽为B控件的一半，则B控件实际当前的宽是1000，就会造成混乱。解决办法是在使用原控件frame之前调一次<code>layoutIfNeeded</code>方法。</p>
+<h3 id="查证实践"><a href="#查证实践" class="headerlink" title="查证实践"></a>查证实践</h3><ol>
+<li><p>使用Xcode7建一个项目，拖一个tableview和cell，给cell上拖一个imageview和一个label，并设置约束<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt15.png" alt="ios10-and-xcode8-adapt15"></p>
+</li>
+<li><p>在viewController的<code>viewDidLoad</code>中打印调用<code>layoutIfNeeded</code>前后各元素的frame<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt16.png" alt="ios10-and-xcode8-adapt16"></p>
+</li>
+<li><p>在cell的<code>awakeFromNib</code>调用<code>layoutIfNeeded</code>方法前后打印frame，并测试给cell赋值后是否frame也需要调用<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt17.png" alt="ios10-and-xcode8-adapt17"></p>
+</li>
+<li><p>在Xcode7中运行，打印结果<br> 发现原在Xcode7时，<code>viewDidLoad</code>和<code>awakeFromNib</code>中能获取正常的frame<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt18.png" alt="ios10-and-xcode8-adapt18"></p>
+</li>
+<li><p>使用Xcode8，并点开storyboard后<br> 发现git修改记录中删除了很多<rect></rect>标签的元素<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt19.png" alt="ios10-and-xcode8-adapt19"></p>
+<p> 在Xcode8中运行后，打印结果，发现<code>viewDidLoad</code>和<code>awakeFromNib</code>中，执行<code>layoutIfNeeded</code>之前拖上去的控件的frame都变成了{0, 0, 1000, 1000}，执行之后的frame是正常的，给cell赋值时的frame也是正常的。<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt20.png" alt="ios10-and-xcode8-adapt20"></p>
+</li>
+<li><p>再次打开Xcode7， 使用source code模式删除storyboard中版本限制后，再以interface builder方式打开storyboard，发现size被设置成了inferred模式，而且各控件的值也是不对的。<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt21.png" alt="ios10-and-xcode8-adapt21"></p>
+</li>
+</ol>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在更新Xcode8后，并打开了某个xib/storyboard后，最好run下看看是不是乱了。如果乱了，就去对应的controller或cell看看是不是在<code>viewDidLoad</code>和<code>awakeFromNib</code>中使用了控件的frame，如果使用了，请在使用前调用<code>layoutIfNeeded</code>方法。</p>
+<p>如：之前我司项目中的布局乱了，确实是在<code>awakeFromNib</code>中利用控件的frame来修改某个控件的frame，于是就坑了。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt22.png" alt="ios10-and-xcode8-adapt22"></p>
+<p>然后，加上调用<code>layoutIfNeeded</code>后，就恢复如初了。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-22-ios10-and-xcode8-adapt14.png?imageView2/2/h/400" alt="ios10-and-xcode8-adapt14"></p>
+<h2 id="swift版本兼容问题"><a href="#swift版本兼容问题" class="headerlink" title="swift版本兼容问题"></a>swift版本兼容问题</h2><p>如果工程中使用了swift，则第一次使用xcode8打开时，会弹窗提示转换，也有可能不弹窗而且是编译的时候，报错，错误如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">“Use Legacy Swift Language Version” (SWIFT_VERSION) is </span><br><span class="line">required to be configured correctly for targets which use Swift.</span><br><span class="line">Use the [Edit &gt; Convert &gt; To Current Swift Syntax…] menu </span><br><span class="line">to choose a Swift version or use the Build Settings editor to </span><br><span class="line">configure the build setting directly.</span><br></pre></td></tr></table></figure>
+<p>如图：<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt23.png" alt="ios10-and-xcode8-adapt23"></p>
+<p>实际上就是提示你去转换一下swift版本，因为在Xcode7.3.1时swift为2.2，而xcode8支持swift2.3或者swift3.0。如果是直接弹窗提示了，且你是纯swift工程或是自己写的siwft库，可以尝试转换一下，虽然可能他的修改建议不合适。如果是三方库是swift写的，可以考虑等待三方库更新。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ol>
+<li><p>引入swift2.3/3.0的三方库 或者 自行修改之后，手动从Xcode菜单栏-&gt;Edit-&gt;Convert-&gt;To Current Swift Syntax…打开迁移引导。<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt24.png" alt="ios10-and-xcode8-adapt24"></p>
+</li>
+<li><p>选择符合的swift版本<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt25.png" alt="ios10-and-xcode8-adapt25"></p>
+</li>
+<li><p>勾选需要转换的framework或者工程<br> 比如：我司项目使用了一个swift库<a href="https://github.com/danielgindi/Charts" target="_blank" rel="noopener">Charts</a>，使用pod引入最新支持2.3的版本后，xcode8会报错让执行迁移引导，实际上勾选并点击next后，会提示不需要转换。（此图是已经进行过迁移引导后的截图，所以下方会提示已经转换成2.3的语法了）<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-09-23-ios10-and-xcode8-adapt26.png" alt="ios10-and-xcode8-adapt26"></p>
+</li>
+<li><p>目前还有pod useFramework导致其他库.h文件找不到问题，还在尝试解决</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS-10/" rel="tag"># iOS 10</a>
+          
+            <a href="/tags/Xcode8/" rel="tag"># Xcode8</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/12/12-viewcontroller-context-transition-simple-use/" rel="next" title="控制器转场动画简易使用">
+                <i class="fa fa-chevron-left"></i> 控制器转场动画简易使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/22/14-sirikit-document-translation-01/" rel="prev" title="SiriKit官方文档 - Part1-1 SiriKit介绍">
+                SiriKit官方文档 - Part1-1 SiriKit介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无法打开的xib和storyboard"><span class="nav-number">1.</span> <span class="nav-text">无法打开的xib和storyboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制台的疯狂"><span class="nav-number">2.</span> <span class="nav-text">控制台的疯狂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台输出不相关信息"><span class="nav-number">2.1.</span> <span class="nav-text">控制台输出不相关信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真机调试打印显示不全（2016-10-24补充）"><span class="nav-number">2.2.</span> <span class="nav-text">真机调试打印显示不全（2016.10.24补充）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释失效了😱"><span class="nav-number">3.</span> <span class="nav-text">注释失效了😱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增的文档注释"><span class="nav-number">3.1.</span> <span class="nav-text">新增的文档注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#label显示不全"><span class="nav-number">4.</span> <span class="nav-text">label显示不全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机、相册、定位…各种崩"><span class="nav-number">5.</span> <span class="nav-text">相机、相册、定位…各种崩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他权限"><span class="nav-number">5.1.</span> <span class="nav-text">其他权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和storyboard布局混乱"><span class="nav-number">6.</span> <span class="nav-text">xib和storyboard布局混乱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题详述"><span class="nav-number">6.1.</span> <span class="nav-text">问题详述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#造成原因"><span class="nav-number">6.2.</span> <span class="nav-text">造成原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查证实践"><span class="nav-number">6.3.</span> <span class="nav-text">查证实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">6.4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#swift版本兼容问题"><span class="nav-number">7.</span> <span class="nav-text">swift版本兼容问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">7.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2016/09/13/13-ios10-and-xcode8-adapt/';
+          this.page.identifier = '2016/09/13/13-ios10-and-xcode8-adapt/';
+          this.page.title = 'iOS10和Xcode8踩坑记录';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

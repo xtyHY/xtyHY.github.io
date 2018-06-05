@@ -1,0 +1,975 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,App上架," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="有了证书、真机测试，项目也写得差不多了，应该要上线了，还需要以下几个步骤，以一个虚构的项目作为案例来提交步骤解释">
+<meta name="keywords" content="iOS,App上架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发笔记 - iTunes Connection 应用提交">
+<meta property="og:url" content="http://www.devhy.com/2015/05/23/07-ios-app-submit/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="有了证书、真机测试，项目也写得差不多了，应该要上线了，还需要以下几个步骤，以一个虚构的项目作为案例来提交步骤解释">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-00.jpg">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-01.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-02.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-03.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-04.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-05.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-06.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-07.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-08.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-09.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-10.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-11.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-12.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-13.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-14.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-15.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-16.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-17.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-18.png">
+<meta property="og:updated_time" content="2016-09-13T07:55:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发笔记 - iTunes Connection 应用提交">
+<meta name="twitter:description" content="有了证书、真机测试，项目也写得差不多了，应该要上线了，还需要以下几个步骤，以一个虚构的项目作为案例来提交步骤解释">
+<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-00.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2015/05/23/07-ios-app-submit/"/>
+
+
+
+
+
+  <title>iOS开发笔记 - iTunes Connection 应用提交 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2015/05/23/07-ios-app-submit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS开发笔记 - iTunes Connection 应用提交</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-23T15:39:47+08:00">
+                2015-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/23/07-ios-app-submit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/23/07-ios-app-submit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  有了证书、真机测试，项目也写得差不多了，应该要上线了，还需要以下几个步骤，以一个虚构的项目作为案例来提交步骤解释
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="进入iTunes-Connection填写App信息"><a href="#进入iTunes-Connection填写App信息" class="headerlink" title="进入iTunes Connection填写App信息"></a>进入iTunes Connection填写App信息</h2><p>从<a href="https://developer.apple.com/membercenter/" target="_blank" rel="noopener">苹果开发者中心</a>登陆后进入iTunes Connection，或者直接进入<a href="https://itunesconnect.apple.com/" target="_blank" rel="noopener">iTunes Connection</a><br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-00.jpg" alt="07-iOS-iTunesConnection-00"></p>
+<h2 id="新建一个App"><a href="#新建一个App" class="headerlink" title="新建一个App"></a>新建一个App</h2><p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-01.png" alt="07-iOS-iTunesConnection-01"></p>
+<h3 id="新建App"><a href="#新建App" class="headerlink" title="新建App"></a>新建App</h3><p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-02.png" alt="07-iOS-iTunesConnection-02"></p>
+<h3 id="填写相关信息"><a href="#填写相关信息" class="headerlink" title="填写相关信息"></a>填写相关信息</h3><h4 id="官方说明："><a href="#官方说明：" class="headerlink" title="官方说明："></a>官方说明：</h4><ol>
+<li><p>名称<br> 您的 App 在 App Store 中显示的名称。名称长度不能超过 255 个字符。</p>
+</li>
+<li><p>主要语言<br> 如果 App 信息没有针对某个国家的 App Store 进行本地化, App 信息将以主要语言呈现。</p>
+</li>
+<li><p>套装ID<br> 套装 ID 必须与您在 Xcode 中使用的 ID 相符。该 ID 在您上传第一个构建版本后便无法更改。</p>
+</li>
+<li><p>SUK<br> 您 App 专有的 ID, 此 ID 不会在 App Store 中显示。</p>
+</li>
+</ol>
+<p><em>注：名称一般和工程的Display Name一致，套装ID实际就是上篇博文中的证书配置中配置的一系列证书直到最后一步，SUK建议以公司域名反写+发布日期，用于生成唯一AppId</em></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-03.png" alt="07-iOS-iTunesConnection-03"></p>
+<h2 id="完善App信息"><a href="#完善App信息" class="headerlink" title="完善App信息"></a>完善App信息</h2><p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-04.png" alt="07-iOS-iTunesConnection-04"></p>
+<h2 id="确定价格"><a href="#确定价格" class="headerlink" title="确定价格"></a>确定价格</h2><p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-05.png" alt="07-iOS-iTunesConnection-05"></p>
+<h2 id="完善提交信息"><a href="#完善提交信息" class="headerlink" title="完善提交信息"></a>完善提交信息</h2><h3 id="截图上传"><a href="#截图上传" class="headerlink" title="截图上传"></a>截图上传</h3><h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>屏幕快照必须为 JPG 或 PNG 格式，且必须采用 RGB 颜色空间。 App 视频预览必须为 M4V、MP4 或 MOV 格式，且不能超过 500 MB</p>
+<h4 id="一般要求"><a href="#一般要求" class="headerlink" title="一般要求"></a>一般要求</h4><p>需要四种尺寸的图片，最多能5张，最少1张，视频最多1个（可以没有）</p>
+<p>尺寸分别为：3.5英寸（640x960）、4英寸（640x1136）、4.7英寸（750x1334）、5.5英寸（1242x2208）</p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-06.png" alt="07-iOS-iTunesConnection-06"></p>
+<h3 id="描述、关键字、支持网址等信息"><a href="#描述、关键字、支持网址等信息" class="headerlink" title="描述、关键字、支持网址等信息"></a>描述、关键字、支持网址等信息</h3><h4 id="官方说明-1"><a href="#官方说明-1" class="headerlink" title="官方说明"></a>官方说明</h4><ol>
+<li><p>描述<br> 对您 App 的描述，用以详细说明特性和功能。它还将用于您的  Watch App。</p>
+</li>
+<li><p>关键字<br> 一个或多个关键词，用以描述您的 App。关键词将使 App Store 搜索结果更加准确。关键词之间用英文逗点分隔。</p>
+</li>
+<li><p>支持网址<br> 您的 App 技术支持信息网址(URL)。该网址将会在 App Store 中显示。</p>
+</li>
+<li><p>营销信息网址<br> 您的 App 营销信息网址(URL)。该网址会在 App Store 中显示。</p>
+</li>
+</ol>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-07.png" alt="07-iOS-iTunesConnection-07"></p>
+<h3 id="构建版本"><a href="#构建版本" class="headerlink" title="构建版本"></a>构建版本</h3><p>可使用Xcode 或 Application Loader进行构建</p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-08.png" alt="07-iOS-iTunesConnection-08"></p>
+<h3 id="图标、版权、联系方式"><a href="#图标、版权、联系方式" class="headerlink" title="图标、版权、联系方式"></a>图标、版权、联系方式</h3><h4 id="官方说明-2"><a href="#官方说明-2" class="headerlink" title="官方说明"></a>官方说明</h4><ol>
+<li><p>图标<br> 此图标将用于 App Store，其格式必须为 JPG 或 PNG，最低分辨率至少为 72 DPI，并采用 RGB 色彩空间。它不能包含图层或圆角。</p>
+</li>
+<li><p>版权<br> 拥有您的 App 专有权的人员或实体的名称，前面是获得权利的年份（例如“2008 Acme Inc”）。请勿提供网址(URL)。</p>
+</li>
+</ol>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-09.png" alt="07-iOS-iTunesConnection-09"></p>
+<h3 id="分级"><a href="#分级" class="headerlink" title="分级"></a>分级</h3><p>一般来说先全选无，然后再调整，全无4+审核非常严<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-10.png" alt="07-iOS-iTunesConnection-10"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-11.png" alt="07-iOS-iTunesConnection-11"></p>
+<h3 id="审核信息"><a href="#审核信息" class="headerlink" title="审核信息"></a>审核信息</h3><ol>
+<li><p>联系信息<br> 当 App 审核团队有任何问题或需要额外信息时, 您所在机构的联系人信息。</p>
+</li>
+<li><p>备注<br> 对审核过程会有所帮助的、有关您 App 的额外信息, 包括在测试中需要的 App 特别设置等。</p>
+</li>
+<li><p>演示账户<br> 对您的 App 具有完全访问权限帐户的用户名和密码。此帐户在审核过程中使用，并且不能过期。在“备注”栏中提供其他帐户的详细信息。</p>
+</li>
+</ol>
+<p><em>注：演示账户就是你的功能里有需要登录的功能，必须提供现有的账户密码给测试，否知会被拒</em></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-12.png" alt="07-iOS-iTunesConnection-12"></p>
+<h3 id="选择版本发布时间"><a href="#选择版本发布时间" class="headerlink" title="选择版本发布时间"></a>选择版本发布时间</h3><p>一般是自动发布，审核一般用时1-3周（不被拒的情况下）</p>
+<h2 id="使用Xcode提交"><a href="#使用Xcode提交" class="headerlink" title="使用Xcode提交"></a>使用Xcode提交</h2><p>注：需要先配置真机测试的证书（方式见<a href="http://www.devhy.com/ios-certificate-one.html" target="_blank" rel="noopener">iOS开发笔记 – 证书申请 真机测试配置</a> - 七、配置真机测试）后，并连接真机，才能进行提交</p>
+<h3 id="进行打包"><a href="#进行打包" class="headerlink" title="进行打包"></a>进行打包</h3><p>Xcode-&gt;Product-&gt;Archive<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-13.png" alt="07-iOS-iTunesConnection-13"></p>
+<h3 id="提交到iTunes-Connection"><a href="#提交到iTunes-Connection" class="headerlink" title="提交到iTunes Connection"></a>提交到iTunes Connection</h3><p>选择Submit即可提交到iTunes Connection构建版本</p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-14.png" alt="07-iOS-iTunesConnection-14"></p>
+<h2 id="提交审核"><a href="#提交审核" class="headerlink" title="提交审核"></a>提交审核</h2><h3 id="选择构建的版本"><a href="#选择构建的版本" class="headerlink" title="选择构建的版本"></a>选择构建的版本</h3><p>成功后，刷新iTunes Connection页面，并在构建版本处进行添加（点击+号）<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-15.png" alt="07-iOS-iTunesConnection-15"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-16.png" alt="07-iOS-iTunesConnection-16"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-17.png" alt="07-iOS-iTunesConnection-17"></p>
+<h3 id="提交审核-1"><a href="#提交审核-1" class="headerlink" title="提交审核"></a>提交审核</h3><p>最后，iTunesConnect中信息均准备好了之后，点击“提交以供审核”，弹出新页面如下图：<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-07-iOS-iTunesConnection-18.png" alt="07-iOS-iTunesConnection-18"></p>
+<ol>
+<li><p>有3个勾选项，描述均清楚，一般性应用均为勾选“否”</p>
+</li>
+<li><p>尤其需要注意的是IDFA，是由你程序中是否用到了IDFA作为唯一ID决定的，请务必根据实际情况进行勾选</p>
+</li>
+</ol>
+<p>最后审核大概时间为1-3周，祝各位App顺利过审</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/App上架/" rel="tag"># App上架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/22/06-fast-creat-app-icon/" rel="next" title="快速生成AppStore需要的icon图标">
+                <i class="fa fa-chevron-left"></i> 快速生成AppStore需要的icon图标
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/10/08-coding-collection-1/" rel="prev" title="iOS开发笔记 - 开发中遇到的问题集">
+                iOS开发笔记 - 开发中遇到的问题集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进入iTunes-Connection填写App信息"><span class="nav-number">1.</span> <span class="nav-text">进入iTunes Connection填写App信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建一个App"><span class="nav-number">2.</span> <span class="nav-text">新建一个App</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建App"><span class="nav-number">2.1.</span> <span class="nav-text">新建App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填写相关信息"><span class="nav-number">2.2.</span> <span class="nav-text">填写相关信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方说明："><span class="nav-number">2.2.1.</span> <span class="nav-text">官方说明：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完善App信息"><span class="nav-number">3.</span> <span class="nav-text">完善App信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定价格"><span class="nav-number">4.</span> <span class="nav-text">确定价格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完善提交信息"><span class="nav-number">5.</span> <span class="nav-text">完善提交信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#截图上传"><span class="nav-number">5.1.</span> <span class="nav-text">截图上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方说明"><span class="nav-number">5.1.1.</span> <span class="nav-text">官方说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一般要求"><span class="nav-number">5.1.2.</span> <span class="nav-text">一般要求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述、关键字、支持网址等信息"><span class="nav-number">5.2.</span> <span class="nav-text">描述、关键字、支持网址等信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方说明-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">官方说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建版本"><span class="nav-number">5.3.</span> <span class="nav-text">构建版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图标、版权、联系方式"><span class="nav-number">5.4.</span> <span class="nav-text">图标、版权、联系方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方说明-2"><span class="nav-number">5.4.1.</span> <span class="nav-text">官方说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分级"><span class="nav-number">5.5.</span> <span class="nav-text">分级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#审核信息"><span class="nav-number">5.6.</span> <span class="nav-text">审核信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择版本发布时间"><span class="nav-number">5.7.</span> <span class="nav-text">选择版本发布时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Xcode提交"><span class="nav-number">6.</span> <span class="nav-text">使用Xcode提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进行打包"><span class="nav-number">6.1.</span> <span class="nav-text">进行打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交到iTunes-Connection"><span class="nav-number">6.2.</span> <span class="nav-text">提交到iTunes Connection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交审核"><span class="nav-number">7.</span> <span class="nav-text">提交审核</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择构建的版本"><span class="nav-number">7.1.</span> <span class="nav-text">选择构建的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交审核-1"><span class="nav-number">7.2.</span> <span class="nav-text">提交审核</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2015/05/23/07-ios-app-submit/';
+          this.page.identifier = '2015/05/23/07-ios-app-submit/';
+          this.page.title = 'iOS开发笔记 - iTunes Connection 应用提交';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,967 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,SiriKit," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Creating an Intents Extension  与SiriKit的交互发生在你的Intents扩展，它是你在iOS应用Bundle中提供的App扩展。所以你必须先有一个iOS应用后才能创建Intents扩展。Intents扩展处理了大多数与SiriKit的交互，但你的iOS">
+<meta name="keywords" content="iOS,SiriKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SiriKit官方文档 - Part1-2 创建一个Intents扩展">
+<meta property="og:url" content="http://www.devhy.com/2016/10/22/15-sirikit-document-translation-02/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Creating an Intents Extension  与SiriKit的交互发生在你的Intents扩展，它是你在iOS应用Bundle中提供的App扩展。所以你必须先有一个iOS应用后才能创建Intents扩展。Intents扩展处理了大多数与SiriKit的交互，但你的iOS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-29T08:00:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SiriKit官方文档 - Part1-2 创建一个Intents扩展">
+<meta name="twitter:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Creating an Intents Extension  与SiriKit的交互发生在你的Intents扩展，它是你在iOS应用Bundle中提供的App扩展。所以你必须先有一个iOS应用后才能创建Intents扩展。Intents扩展处理了大多数与SiriKit的交互，但你的iOS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2016/10/22/15-sirikit-document-translation-02/"/>
+
+
+
+
+
+  <title>SiriKit官方文档 - Part1-2 创建一个Intents扩展 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2016/10/22/15-sirikit-document-translation-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SiriKit官方文档 - Part1-2 创建一个Intents扩展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-22T20:00:17+08:00">
+                2016-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/22/15-sirikit-document-translation-02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/10/22/15-sirikit-document-translation-02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/CreatingtheIntentsExtension.html" target="_blank" rel="noopener">官方文档原文 - Creating an Intents Extension</a></p>
+</blockquote>
+<p>与SiriKit的交互发生在你的Intents扩展，它是你在iOS应用Bundle中提供的App扩展。所以你必须先有一个iOS应用后才能创建Intents扩展。Intents扩展处理了大多数与SiriKit的交互，但你的iOS应用需要察觉到这些交互并在某些情况下可能会发挥积极作用。</p>
+<a id="more"></a>
+<p>在向iOS应用添加Intents扩展程序时，你必须执行以下操作：</p>
+<ul>
+<li>在你的iOS应用中启用Siri功能，参阅<a href="#配置你的Xcode项目">配置你的Xcode项目</a>。</li>
+<li>向你的Xcode项目添加Intents扩展target并配置其Info.plist文件，参阅<a href="#配置你的Xcode项目">配置你的Xcode项目</a>。</li>
+<li>在运行时请求使用Siri授权，参阅<a href="#在你的iOS应用中请求Siri授权">在你的iOS应用中请求Siri授权</a>。</li>
+<li>定义处理意图所需的对象，参阅<a href="#http://devhy.com/2016/11/01/16-sirikit-document-translation-03/">解决和处理意图</a>。</li>
+<li>定义你的应用使用的任何自定义词汇，参阅<a href="http://devhy.com/2016/11/03/20-sirikit-document-translation-07/" target="_blank" rel="noopener">指定自定义词汇表</a>。</li>
+</ul>
+<blockquote>
+<p>注意</p>
+<p>如果要自定义Siri或Maps显示的界面，你还可以向你的iOS应用添加Intents UI扩展。Intents UI扩展不能替代Intents扩展，如果你提供了Intents UI扩展，则还必须提供一个Intents扩展。有关创建Intents UI扩展的信息，参阅<a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">创建Intents UI扩展</a>。</p>
+</blockquote>
+<p>有关如何创建应用扩展的信息，参阅<a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214" target="_blank" rel="noopener">App Extension Programming Guide</a>。</p>
+<h1 id="配置你的Xcode项目"><a href="#配置你的Xcode项目" class="headerlink" title="配置你的Xcode项目"></a>配置你的Xcode项目</h1><p>配置Xcode项目需要几个步骤。除了向你的项目添加Intents扩展目标之外，你还必须对iOS应用进行一些细微的更改。</p>
+<p>要使用SiriKit，你必须在iOS应用中启用Siri功能。你启用此功能的方式与启用其他功能（如iCloud，通知推送和应用内购买等）相同。启用它会向应用添加权限（entitlements），让App Store知道你的应用支持Siri。</p>
+<h2 id="在你的iOS应用中启用Siri功能"><a href="#在你的iOS应用中启用Siri功能" class="headerlink" title="在你的iOS应用中启用Siri功能"></a>在你的iOS应用中启用Siri功能</h2><ol>
+<li>在Xcode中打开iOS应用项目。</li>
+<li>在项目设定中，选取你的iOS应用目标(Targets)。</li>
+<li>选择功能选项卡(Capabilities)。</li>
+<li>启用S​​iri功能。</li>
+</ol>
+<p>Xcode将Siri entitlements添加到你的iOS应用中。App Store要求包含Intents扩展的应用存在此权限。</p>
+<p>启用S​​iri支持后，给项目添加一个新的Intents扩展target。添加target会提供了构建Intents扩展所需的初始文件，你需要配置你的Xcode项目，编译这个扩展并将其包含在iOS应用bundle中。</p>
+<h2 id="在应用中添加Intents扩展"><a href="#在应用中添加Intents扩展" class="headerlink" title="在应用中添加Intents扩展"></a>在应用中添加Intents扩展</h2><ol>
+<li>在Xcode中打开现有的iOS应用项目。</li>
+<li>选择File &gt; New &gt; Target。</li>
+<li>从相应平台的应用扩展组（Application Extension group）中选择意图扩展（Intents extension）。</li>
+<li>点击Next。</li>
+<li>指定扩展名称并配置语言和其他选项。如果准备自定义Siri界面的某些部分，请勾选包含UI扩展（Include UI Extension）选项。</li>
+<li>单击Finish。</li>
+</ol>
+<blockquote>
+<p>注意</p>
+<p>你可以向应用添加多个Intents扩展，但每个扩展必须支持不同的意图。仅当要减少每个扩展的内存占用或者提高性能表现才需要创建多个扩展。</p>
+</blockquote>
+<p>将你的Intents扩展target添加到你的项目后，通过修改Xcode提供默认Info.plist文件以指定支持的Intent。SiriKit通过扩展的Info.plist文件中的信息来确定哪些意图需要路由到你的扩展。</p>
+<h2 id="指定扩展支持的意图"><a href="#指定扩展支持的意图" class="headerlink" title="指定扩展支持的意图"></a>指定扩展支持的意图</h2><ol>
+<li>在Xcode中，选择你的Intents扩展的Info.plist文件。</li>
+<li>展开NSExtension和NSExtensionAttributes Keys可以看到IntentsSupported和IntentsRestrictedWhileLocked这两个Keys。</li>
+<li>在IntentsSupported Key中，为扩展处理的每个意图添加一个String项。将每项的值设置为意图的类名。 这个Key是必需的。你可以支持给定域中的所有意图，或者仅支持其中的一些，并且单个扩展可以支持多个域。</li>
+<li>在IntentsRestrictedWhileLocked Key中，为需要设备非锁定状态的每个意图添加一个String项。将每项的值设置为意图的类名。此Key是可选的。某些意图是需要用户设备解锁后才能执行，例如涉及金融交易的意图。在默认情况下，你可以使用此Key作为锁定设备的Intents来扩充默认列表。</li>
+</ol>
+<p>当用户语义不明确被解析为多个意图时，SiriKit会使用IntentsSupported Key中intents的顺序来确定发送到App的意图。将最相关的一组意图放在数组中来管理intents。当你的Intents扩展支持具有类似语义的多个域时，优先化你的意图尤其重要。例如，同时支持呼叫和消息意图的App可能会选择在发起呼叫和发送消息中有限选择发送消息。</p>
+<p>某些意图可能需要你的Xcode项目或App的额外配置步骤。例如，当实现乘车预定App时，Maps希望提供描述你的服务覆盖区域的GeoJSON文件。有关特定意图的任何其他配置步骤的信息，请参阅在<a href="http://devhy.com/2016/11/03/19-sirikit-document-translation-06/" target="_blank" rel="noopener">意图域</a>中这些意图的说明。</p>
+<h1 id="在你的iOS应用中请求Siri授权"><a href="#在你的iOS应用中请求Siri授权" class="headerlink" title="在你的iOS应用中请求Siri授权"></a>在你的iOS应用中请求Siri授权</h1><p>用户必须授予你的App使用SiriKit的权限。要请求App的权限，请进行以下操作：</p>
+<ol>
+<li>在iOS应用的Info.plist文件中包含NSSiriUsageDescription Key。此键的值是一个用于描述你的App与SiriKit共享信息的字符串。例如，锻炼App可将值设置为字符串”锻炼信息将发送到Siri“。</li>
+<li>在App运行中的某个时刻调用INPreferences的requestSiriAuthorization:类方法。</li>
+</ol>
+<p>你的iOS应用第一次调用requestSiriAuthorization:方法时，系统会显示一条提示用户授权你的App的提醒。警报包括你在App的Info.plist文件的NSSiriUsageDescription Key中提供的用法描述字符串。用户可以批准或拒绝授权请求，稍后可以在“设置”应用中更改App的授权状态。该系统会记住你的App的授权状态，以便对requestSiriAuthorization:方法的后续调用不会再次提示用户。</p>
+<blockquote>
+<p>注意</p>
+<p>当用户首次尝试使用Intent扩展时，Maps可以帮助你授权。具体来说，如果用户与授权状态尚未确定的扩展程序互动，则Maps会代表该扩展程序自动请求授权。</p>
+</blockquote>
+<p>应用必须启用Siri功能才能成功授权。有关如何启用Siri功能的信息，请参阅<a href="#配置你的Xcode项目">配置你的Xcode项目</a>。</p>
+<h1 id="构建你的应用程序的服务"><a href="#构建你的应用程序的服务" class="headerlink" title="构建你的应用程序的服务"></a>构建你的应用程序的服务</h1><p>你的Intents扩展是你的App行为的代表，因此它必须能够执行与你的App相同的服务。由于你的iOS应用和Intents扩展可能执行许多相同的任务，你可能需要考虑重构你的代码。具体来说，请考虑以下几点：</p>
+<ol>
+<li><strong>在私有共享框架(private shared framework)中实现你的核心服务。</strong> 私有共享框架允许你在一个代码模块中定义核心服务，并将代码动态链接到你的iOS应用程序和Intents扩展。使用框架最小化两个可执行文件的大小，并确保两者使用相同的代码。</li>
+<li><strong>使用共享容器来存储公共资源。</strong> 将相关的图像和数据文件放入共享容器，以便它们也可以由你的Intents扩展访问。你可以在iOS应用的“功能(Capabilities)“标签中启用共享容器支持，并启用Intents扩展target。</li>
+</ol>
+<h1 id="测试你的扩展"><a href="#测试你的扩展" class="headerlink" title="测试你的扩展"></a>测试你的扩展</h1><p>你必须在真实设备上运行来测试Intents扩展。Xcode支持直接从Xcode项目启动Intents扩展，也支持在设备上运行时对其进行调试。</p>
+<h2 id="在设备上运行和调试Intents扩展"><a href="#在设备上运行和调试Intents扩展" class="headerlink" title="在设备上运行和调试Intents扩展"></a>在设备上运行和调试Intents扩展</h2><ol>
+<li>选择Intents扩展的build scheme。当你向项目添加Intents扩展时，Xcode会自动创建运行该扩展的build scheme。</li>
+<li>选择在连接的设备上运行。你不能在模拟器中调试你的Intents扩展。</li>
+<li>选择Product &gt; Run以在设备上启动你的扩展。</li>
+<li>当Xcode提示时，选择Siri（或Maps）作为运行的应用程序。Xcode会构建你的App和扩展程序，将其安装在设备上，并启动你选择的App。</li>
+</ol>
+<p>当首次安装你的扩展程序时，Siri可能无法立即识别你的App扩展程序。你可能需要等待几分钟才能发出任何相关命令。同样，在更新Info.plist文件时，你可能需要等待几分钟，Siri才会识别任何更改。</p>
+<h1 id="从你的iOS应用使用Intents框架"><a href="#从你的iOS应用使用Intents框架" class="headerlink" title="从你的iOS应用使用Intents框架"></a>从你的iOS应用使用Intents框架</h1><p>你的iOS应用必须使用Intents Framework的某些部分来执行特定任务：</p>
+<ol>
+<li>使用INVocabulary类来注册用户特定的词汇术语。注册用户特定的词汇仅适用于你的App的单个用户特定的术语，并且Siri可能需要帮助理解；不要注册常用或易于理解的术语。有关注册词汇的信息，参阅<a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">指定自定义词汇表</a>。</li>
+<li>使用INPreferences类来请求用户处理意图的权限，参阅<a href="#在你的iOS应用中请求Siri授权">在你的iOS应用中请求Siri授权</a>。</li>
+<li>当你想向系统贡献交互时，创建INInteraction对象。贡献交互需要你提供用户正在做什么的上下文。系统和其他应用可以使用该信息改进搜索结果以完善用户体验。有关更多信息，请参阅<a href="https://developer.apple.com/reference/intents/ininteraction" target="_blank" rel="noopener">INInteraction Class Reference</a>。</li>
+</ol>
+<h1 id="国际化和Siri"><a href="#国际化和Siri" class="headerlink" title="国际化和Siri"></a>国际化和Siri</h1><p>在实现Intents扩展时，始终根据设备的当前语言设置返回内容。如果你的应用与你的应用扩展共享本地化内容，请始终以用户指定的语言提供该内容。不要使用Siri语言指定本地化资源，这可能与设备配置的语言不同。</p>
+<p>有关本地化iOS应用和Intents扩展的详细信息，参阅<a href="https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i" target="_blank" rel="noopener">Internationalization and Localization Guide</a>。</p>
+<h1 id="SiriKit译文系列"><a href="#SiriKit译文系列" class="headerlink" title="SiriKit译文系列"></a>SiriKit译文系列</h1><blockquote>
+<p><a href="http://devhy.com/2016/10/31/14-sirikit-document-translation-01/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-1 SiriKit介绍</a><br><a href="http://devhy.com/2016/10/31/15-sirikit-document-translation-02/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-2 创建一个Intents扩展</a><br><a href="http://devhy.com/2016/11/01/16-sirikit-document-translation-03/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-3 解决和处理意图</a><br><a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-4 指定自定义词汇</a><br><a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-5 创建Intents UI扩展</a><br><a href="http://devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-1 参考-意图域</a><br><a href="http://devhy.com/2016/11/07/20-sirikit-document-translation-07/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-2 参考-App词汇文件格式</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/SiriKit/" rel="tag"># SiriKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/22/14-sirikit-document-translation-01/" rel="next" title="SiriKit官方文档 - Part1-1 SiriKit介绍">
+                <i class="fa fa-chevron-left"></i> SiriKit官方文档 - Part1-1 SiriKit介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/31/16-sirikit-document-translation-03/" rel="prev" title="SiriKit官方文档 - Part1-3 解决和处理意图">
+                SiriKit官方文档 - Part1-3 解决和处理意图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置你的Xcode项目"><span class="nav-number">1.</span> <span class="nav-text">配置你的Xcode项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在你的iOS应用中启用Siri功能"><span class="nav-number">1.1.</span> <span class="nav-text">在你的iOS应用中启用Siri功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在应用中添加Intents扩展"><span class="nav-number">1.2.</span> <span class="nav-text">在应用中添加Intents扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定扩展支持的意图"><span class="nav-number">1.3.</span> <span class="nav-text">指定扩展支持的意图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在你的iOS应用中请求Siri授权"><span class="nav-number">2.</span> <span class="nav-text">在你的iOS应用中请求Siri授权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建你的应用程序的服务"><span class="nav-number">3.</span> <span class="nav-text">构建你的应用程序的服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试你的扩展"><span class="nav-number">4.</span> <span class="nav-text">测试你的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在设备上运行和调试Intents扩展"><span class="nav-number">4.1.</span> <span class="nav-text">在设备上运行和调试Intents扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从你的iOS应用使用Intents框架"><span class="nav-number">5.</span> <span class="nav-text">从你的iOS应用使用Intents框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#国际化和Siri"><span class="nav-number">6.</span> <span class="nav-text">国际化和Siri</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SiriKit译文系列"><span class="nav-number">7.</span> <span class="nav-text">SiriKit译文系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2016/10/22/15-sirikit-document-translation-02/';
+          this.page.identifier = '2016/10/22/15-sirikit-document-translation-02/';
+          this.page.title = 'SiriKit官方文档 - Part1-2 创建一个Intents扩展';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

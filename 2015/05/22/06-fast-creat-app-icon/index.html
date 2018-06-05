@@ -1,0 +1,926 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PS,美工," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="在开发iOS的App时，需要给App配置icon图，但由于icon图尺寸繁多，我等在美工上技术并不好，所以找到了一个快速生成icon的PS工具。">
+<meta name="keywords" content="PS,美工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速生成AppStore需要的icon图标">
+<meta property="og:url" content="http://www.devhy.com/2015/05/22/06-fast-creat-app-icon/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="在开发iOS的App时，需要给App配置icon图，但由于icon图尺寸繁多，我等在美工上技术并不好，所以找到了一个快速生成icon的PS工具。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-01.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-02.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-03.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-04.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-05.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-06.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-07.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-08.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-09.png">
+<meta property="og:updated_time" content="2016-08-09T05:10:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速生成AppStore需要的icon图标">
+<meta name="twitter:description" content="在开发iOS的App时，需要给App配置icon图，但由于icon图尺寸繁多，我等在美工上技术并不好，所以找到了一个快速生成icon的PS工具。">
+<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2015/05/22/06-fast-creat-app-icon/"/>
+
+
+
+
+
+  <title>快速生成AppStore需要的icon图标 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2015/05/22/06-fast-creat-app-icon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">快速生成AppStore需要的icon图标</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-22T21:21:35+08:00">
+                2015-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/美工/" itemprop="url" rel="index">
+                    <span itemprop="name">美工</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/22/06-fast-creat-app-icon/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/22/06-fast-creat-app-icon/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在开发iOS的App时，需要给App配置icon图，但由于icon图尺寸繁多，我等在美工上技术并不好，所以找到了一个快速生成icon的PS工具。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发iOS的App时，需要给App配置icon图，参考苹果的开发者官网上提及到关于设计图片尺寸相关的数值<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html" target="_blank" rel="noopener">iOS Human Interface Guidelines - Icon and Image Sizes</a> 的文档后发现种类繁多。</p>
+<p>使用PS进行一次次剪切费时费力，搜索一番后发现了这么一个帖子<a href="http://www.ui.cn/detail/40848.html" target="_blank" rel="noopener">一键自动生成 IOS 所有尺寸的 ICON 【效率工具】</a>里面提供了一个使用PS的动作来处理的模板工具</p>
+<p><a href="http://vdisk.weibo.com/s/D8EpVbEJhXpQ" target="_blank" rel="noopener">下载地址</a></p>
+<h2 id="具体用法"><a href="#具体用法" class="headerlink" title="具体用法"></a>具体用法</h2><ol>
+<li><p>设计一张icon原始图，尽量分辨率大于1024x1024**</p>
+</li>
+<li><p>打开App Icon Template [4.0].psd文件**</p>
+<p> 在PS右下（红框区域）图层处，双击“Edit me and save”图层<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-01.png" alt="06-ios-fast-icon-01"></p>
+</li>
+<li><p>双击后弹出一个Icon.psb的智能对象**<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-02.png" alt="06-ios-fast-icon-02"></p>
+</li>
+<li><p>覆盖最上面的图（建议尺寸1024x1024）**<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-03.png" alt="06-ios-fast-icon-03"></p>
+</li>
+<li><p>保存修改**</p>
+<p> 这时会弹出进度框</p>
+<p> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-04.png" alt="06-ios-fast-icon-04"></p>
+</li>
+<li><p>切回到原来的psd文件**</p>
+<p> 发现图样式已经变了<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-05.png" alt="06-ios-fast-icon-05"></p>
+</li>
+</ol>
+<ol start="7">
+<li><p>打开附带的.atn动作文件**<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-06.png" alt="06-ios-fast-icon-06"></p>
+</li>
+<li><p>在PS软件的工具栏–窗口–动作，开启动作窗口**<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-07.png" alt="06-ios-fast-icon-07"></p>
+</li>
+<li><p>选中如图的红框处，然后点击下方的播放键，然后等待一会**</p>
+<p> 期间可以看到PS在自动进行切图，保存，桌面上也会多出很多png的图标，将这些图标拖动到Xcode的Images.xcassets-AppIcon（没有就创建一个）中，然后删除掉不需要的<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-08.png" alt="06-ios-fast-icon-08"><br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-06-ios-fast-icon-09.png" alt="06-ios-fast-icon-09"></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PS/" rel="tag"># PS</a>
+          
+            <a href="/tags/美工/" rel="tag"># 美工</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/30/05-apple-developer-certificate/" rel="next" title="iOS开发笔记 - 证书申请 真机测试配置">
+                <i class="fa fa-chevron-left"></i> iOS开发笔记 - 证书申请 真机测试配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/23/07-ios-app-submit/" rel="prev" title="iOS开发笔记 - iTunes Connection 应用提交">
+                iOS开发笔记 - iTunes Connection 应用提交 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体用法"><span class="nav-number">2.</span> <span class="nav-text">具体用法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2015/05/22/06-fast-creat-app-icon/';
+          this.page.identifier = '2015/05/22/06-fast-creat-app-icon/';
+          this.page.title = '快速生成AppStore需要的icon图标';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1131 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,SiriKit," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Intents Domains  App通过特定域(domains)集成Siri或Maps，这些域定义了App可以支持的行为类别。每个域包含一个或多个特定意图供你处理。你不需要支持给定域中的所有意图，但是建议你尽量支持一个域里的所有意图。 你的Intents扩展和Intents UI扩展">
+<meta name="keywords" content="iOS,SiriKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SiriKit官方文档 - Part2-1 参考-意图域">
+<meta property="og:url" content="http://www.devhy.com/2016/11/12/19-sirikit-document-translation-06/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Intents Domains  App通过特定域(domains)集成Siri或Maps，这些域定义了App可以支持的行为类别。每个域包含一个或多个特定意图供你处理。你不需要支持给定域中的所有意图，但是建议你尽量支持一个域里的所有意图。 你的Intents扩展和Intents UI扩展">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-06-22T04:14:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SiriKit官方文档 - Part2-1 参考-意图域">
+<meta name="twitter:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Intents Domains  App通过特定域(domains)集成Siri或Maps，这些域定义了App可以支持的行为类别。每个域包含一个或多个特定意图供你处理。你不需要支持给定域中的所有意图，但是建议你尽量支持一个域里的所有意图。 你的Intents扩展和Intents UI扩展">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2016/11/12/19-sirikit-document-translation-06/"/>
+
+
+
+
+
+  <title>SiriKit官方文档 - Part2-1 参考-意图域 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2016/11/12/19-sirikit-document-translation-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SiriKit官方文档 - Part2-1 参考-意图域</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-12T15:57:01+08:00">
+                2016-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/12/19-sirikit-document-translation-06/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/11/12/19-sirikit-document-translation-06/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/SiriDomains.html" target="_blank" rel="noopener">官方文档原文 - Intents Domains</a></p>
+</blockquote>
+<p>App通过特定域(domains)集成Siri或Maps，这些域定义了App可以支持的行为类别。每个域包含一个或多个特定意图供你处理。你不需要支持给定域中的所有意图，但是建议你尽量支持一个域里的所有意图。</p>
+<p>你的Intents扩展和Intents UI扩展的Info.plist文件必须声明它们支持的意图。有关配置Intents扩展的Info.plist文件的信息，参阅<a href="http://devhy.com/2016/10/31/15-sirikit-document-translation-02/#配置你的Xcode项目" target="_blank" rel="noopener">Configuring Your Xcode Project</a>。有关配置Intents UI扩展的Info.plist文件的信息，参阅<a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">Creating an Intents UI Extension</a>。</p>
+<a id="more"></a>
+<h1 id="VoIP呼叫"><a href="#VoIP呼叫" class="headerlink" title="VoIP呼叫"></a>VoIP呼叫</h1><p>为用户提供音频或视频通话的应用可以使用此意图启动通话以及搜索用户的通话记录。表6-1列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。当在锁定的设备上执行时，系统会自动提示用户在搜索用户的通话记录之前解锁设备。根据你发起音频或视频呼叫的方式，系统还可能要求用户解锁设备，以便启动你的App。</p>
+<p>表6-1 VoIP呼叫意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发起语音电话</td>
+<td>Handler: <a href="https://developer.apple.com/reference/intents/instartaudiocallintenthandling" target="_blank" rel="noopener">INStartAudioCallIntentHandling</a> protocol<br> Intent: <a href="https://developer.apple.com/reference/intents/instartaudiocallintent" target="_blank" rel="noopener">INStartAudioCallIntent</a><br> Response: <a href="https://developer.apple.com/reference/intents/instartaudiocallintentresponse" target="_blank" rel="noopener">INStartAudioCallIntentResponse</a></td>
+</tr>
+<tr>
+<td>发起视频电话</td>
+<td>Handler: <a href="https://developer.apple.com/reference/intents/INStartVideoCallIntentHandling" target="_blank" rel="noopener">INStartVideoCallIntentHandling</a>  protocol<br> Intent: <a href="https://developer.apple.com/reference/intents/INStartVideoCallIntent" target="_blank" rel="noopener">INStartVideoCallIntent</a> <br> Response: <a href="https://developer.apple.com/reference/intents/INStartVideoCallIntentResponse" target="_blank" rel="noopener">INStartVideoCallIntentResponse</a> <br></td>
+</tr>
+<tr>
+<td>搜索用户通话记录</td>
+<td>Handler: <a href="https://developer.apple.com/reference/intents/INSearchCallHistoryIntentHandling" target="_blank" rel="noopener">INSearchCallHistoryIntentHandling</a>  protocol<br> Intent: <a href="https://developer.apple.com/reference/intents/INSearchCallHistoryIntent" target="_blank" rel="noopener">INSearchCallHistoryIntent</a> <br> Response: <a href="https://developer.apple.com/reference/intents/INSearchCallHistoryIntentResponse" target="_blank" rel="noopener">INSearchCallHistoryIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持所有的调用处理意图，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INCallsDomainHandling" target="_blank" rel="noopener">INCallsDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<blockquote>
+<p>重要</p>
+<p>当支持VoIP呼叫意向时，强烈建议你也采用对CallKit的支持。Siri与CallKit结合能提供更一体化的呼叫体验。当一个扩展使用CallKit发起呼叫时，Siri允许CallKit处理发出呼叫的详细信息。对于不支持CallKit的App，Siri必须在前台启动App。有关使用CallKit的更多信息，参阅<a href="https://developer.apple.com/reference/callkit" target="_blank" rel="noopener">CallKit Framework Reference</a>。</p>
+</blockquote>
+<h1 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h1><p>在用户之间提供消息传递的App可以使用意图发送消息并搜索用户接收的消息。表6-2列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。消息意向不会自动要求用户解锁设备后使用。</p>
+<p>表6-2消息意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送消息</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSendMessageIntentHandling" target="_blank" rel="noopener">INSendMessageIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSendMessageIntent" target="_blank" rel="noopener">INSendMessageIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INSendMessageIntentResponse" target="_blank" rel="noopener">INSendMessageIntentResponse</a></td>
+</tr>
+<tr>
+<td>搜索消息</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSearchForMessagesIntentHandling" target="_blank" rel="noopener">INSearchForMessagesIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSearchForMessagesIntent" target="_blank" rel="noopener">INSearchForMessagesIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INSearchForMessagesIntentResponse" target="_blank" rel="noopener">INSearchForMessagesIntentResponse</a></td>
+</tr>
+<tr>
+<td>设置消息上属性</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetMessageAttributeIntentHandling" target="_blank" rel="noopener">INSetMessageAttributeIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetMessageAttributeIntent" target="_blank" rel="noopener">INSetMessageAttributeIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INSetMessageAttributeIntentResponse" target="_blank" rel="noopener">INSetMessageAttributeIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持每个消息意图，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INMessagesDomainHandling" target="_blank" rel="noopener">INMessagesDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<h1 id="付款"><a href="#付款" class="headerlink" title="付款"></a>付款</h1><p>提供用户到用户付款服务的应用可以使用意图发送或请求付款。表6-3列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。当在锁定的设备上执行时，系统会自动提示用户在完成任何付款相关请求之前解锁设备。</p>
+<p>表6-3支付意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>向另一个用户发起付</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSendPaymentIntentHandling" target="_blank" rel="noopener">INSendPaymentIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSendPaymentIntent" target="_blank" rel="noopener">INSendPaymentIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INSendPaymentIntentResponse" target="_blank" rel="noopener">INSendPaymentIntentResponse</a></td>
+</tr>
+<tr>
+<td>向另一个用户发起收款</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INRequestPaymentIntentHandling" target="_blank" rel="noopener">INRequestPaymentIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INRequestPaymentIntent" target="_blank" rel="noopener">INRequestPaymentIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INRequestPaymentIntentResponse" target="_blank" rel="noopener">INRequestPaymentIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持这两个支付意向，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INPaymentsDomainHandling" target="_blank" rel="noopener">INPaymentsDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<h1 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h1><p>管理照片的应用可以使用意图来搜索照片或显示照片。表6-4列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。在锁定的设备上执行时，系统会在完成任何照片相关请求之前自动提示用户解锁设备。</p>
+<p>表6-4照片意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索照片</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSearchForPhotosIntentHandling" target="_blank" rel="noopener">INSearchForPhotosIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSearchForPhotosIntent" target="_blank" rel="noopener">INSearchForPhotosIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INSearchForPhotosIntentResponse" target="_blank" rel="noopener">INSearchForPhotosIntentResponse</a></td>
+</tr>
+<tr>
+<td>播放照片幻灯片</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INStartPhotoPlaybackIntentHandling" target="_blank" rel="noopener">INStartPhotoPlaybackIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INStartPhotoPlaybackIntent" target="_blank" rel="noopener">INStartPhotoPlaybackIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INStartPhotoPlaybackIntentResponse" target="_blank" rel="noopener">INStartPhotoPlaybackIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持这两个照片意向，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INPhotosDomainHandling" target="_blank" rel="noopener">INPhotosDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<h1 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h1><p>管理健身活动的App可以使用意图启动、结束和管理锻炼。表6-5列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。当在锁定的设备上执行时，系统自动地提示用户解锁设备，使得其可以启动锻炼应用。</p>
+<p>表6-5锻炼意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开始锻炼</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INStartWorkoutIntentHandling" target="_blank" rel="noopener">INStartWorkoutIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INStartWorkoutIntent" target="_blank" rel="noopener">INStartWorkoutIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INStartWorkoutIntentResponse" target="_blank" rel="noopener">INStartWorkoutIntentResponse</a></td>
+</tr>
+<tr>
+<td>暂停锻炼</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INPauseWorkoutIntentHandling" target="_blank" rel="noopener">INPauseWorkoutIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INPauseWorkoutIntent" target="_blank" rel="noopener">INPauseWorkoutIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INPauseWorkoutIntentResponse" target="_blank" rel="noopener">INPauseWorkoutIntentResponse</a></td>
+</tr>
+<tr>
+<td>恢复锻炼</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INResumeWorkoutIntentHandling" target="_blank" rel="noopener">INResumeWorkoutIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INResumeWorkoutIntent" target="_blank" rel="noopener">INResumeWorkoutIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INResumeWorkoutIntentResponse" target="_blank" rel="noopener">INResumeWorkoutIntentResponse</a></td>
+</tr>
+<tr>
+<td>结束锻炼</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INEndWorkoutIntentHandling" target="_blank" rel="noopener">INEndWorkoutIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INEndWorkoutIntent" target="_blank" rel="noopener">INEndWorkoutIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INEndWorkoutIntentResponse" target="_blank" rel="noopener">INEndWorkoutIntentResponse</a></td>
+</tr>
+<tr>
+<td>取消锻炼</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INCancelWorkoutIntentHandling" target="_blank" rel="noopener">INCancelWorkoutIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INCancelWorkoutIntent" target="_blank" rel="noopener">INCancelWorkoutIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INCancelWorkoutIntentResponse" target="_blank" rel="noopener">INCancelWorkoutIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持所有意图，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INWorkoutsDomainHandling" target="_blank" rel="noopener">INWorkoutsDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<h1 id="乘车预订"><a href="#乘车预订" class="headerlink" title="乘车预订"></a>乘车预订</h1><p>提供交通服务的App可以使用意图进行乘车预订，并提供有关这些乘车预订的信息。乘车预订意图可能源于Siri或Maps，乘车预订意图都可以用相同的方式处理。表6-6列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。强烈建议你支持所有可用的意图。当在锁定的设备上执行时，系统自动提示用户在列出乘车选项或预订乘车之前解锁设备。获取乘车预订的状态不会自动要求用户的设备解锁。</p>
+<p>表6-6乘车请求意向</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列出所有可预定车辆 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INListRideOptionsIntentHandling" target="_blank" rel="noopener">INListRideOptionsIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INListRideOptionsIntent" target="_blank" rel="noopener">INListRideOptionsIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INListRideOptionsIntentResponse" target="_blank" rel="noopener">INListRideOptionsIntentResponse</a></td>
+</tr>
+<tr>
+<td>预定车辆</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INRequestRideIntentHandling" target="_blank" rel="noopener">INRequestRideIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INRequestRideIntent" target="_blank" rel="noopener">INRequestRideIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INRequestRideIntentResponse" target="_blank" rel="noopener">INRequestRideIntentResponse</a></td>
+</tr>
+<tr>
+<td>获取预定车辆的当前状态</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INGetRideStatusIntentHandling" target="_blank" rel="noopener">INGetRideStatusIntentHandling</a>  protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INGetRideStatusIntent" target="_blank" rel="noopener">INGetRideStatusIntent</a> <br> Response:<a href="https://developer.apple.com/reference/intents/INGetRideStatusIntentResponse" target="_blank" rel="noopener">INGetRideStatusIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持所有意图，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INRidesharingDomainHandling" target="_blank" rel="noopener">INRidesharingDomainHandling</a> 协议，而不是单独采用每个协议。</p>
+<blockquote>
+<p>重要</p>
+<p>在实现乘车预订支持时，提供一个<code>GeoJSON</code>文件作为你可以提供乘车预订的地区信息，并在iTunes Connect上传该文件作为你的App的路由App覆盖文件(Routing App Coverage File)。当需要建议能够提供搭乘的App时，Maps会使用你的覆盖文件信息来决定是否应该建议使用你的App。如果你不提供覆盖文件，并且用户的设备上未安装你的应用，地图不会建议你的应用。有关如何创建和上传路由App覆盖文件的信息，请参阅<a href="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Appendices/Properties.html" target="_blank" rel="noopener">iTunes Connect Properties</a>。</p>
+</blockquote>
+<h1 id="CarPlay"><a href="#CarPlay" class="headerlink" title="CarPlay"></a>CarPlay</h1><p>拥有用于管理车辆的iOS应用的汽车制造商可以使用CarPlay意图，以便用户可以通过Siri管理车辆环境。表6-7列出了你可以实现的意图以及在Intents扩展中支持的类和协议。CarPlay意图不会自动要求用户的设备解锁。</p>
+<p>表6-7CarPlay意图</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>改变音频源</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetAudioSourceInCarIntentHandling" target="_blank" rel="noopener">INSetAudioSourceInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetAudioSourceInCarIntent" target="_blank" rel="noopener">INSetAudioSourceInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetAudioSourceInCarIntentResponse" target="_blank" rel="noopener">INSetAudioSourceInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>更改气候控制设置</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetClimateSettingsInCarIntentHandling" target="_blank" rel="noopener">INSetClimateSettingsInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetClimateSettingsInCarIntent" target="_blank" rel="noopener">INSetClimateSettingsInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetClimateSettingsInCarIntentResponse" target="_blank" rel="noopener">INSetClimateSettingsInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>更改除霜设置</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetDefrosterSettingsInCarIntentHandling" target="_blank" rel="noopener">INSetDefrosterSettingsInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetDefrosterSettingsInCarIntent" target="_blank" rel="noopener">INSetDefrosterSettingsInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetDefrosterSettingsInCarIntentResponse" target="_blank" rel="noopener">INSetDefrosterSettingsInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>将车辆设置保存到配置文件</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSaveProfileInCarIntentHandling" target="_blank" rel="noopener">INSaveProfileInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSaveProfileInCarIntent" target="_blank" rel="noopener">INSaveProfileInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSaveProfileInCarIntentResponse" target="_blank" rel="noopener">INSaveProfileInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>从配置文件恢复车辆设置</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetProfileInCarIntentHandling" target="_blank" rel="noopener">INSetProfileInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetProfileInCarIntent" target="_blank" rel="noopener">INSetProfileInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetProfileInCarIntentResponse" target="_blank" rel="noopener">INSetProfileInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>更改座椅温度</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetSeatSettingsInCarIntentHandling" target="_blank" rel="noopener">INSetSeatSettingsInCarIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetSeatSettingsInCarIntent" target="_blank" rel="noopener">INSetSeatSettingsInCarIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetSeatSettingsInCarIntentResponse" target="_blank" rel="noopener">INSetSeatSettingsInCarIntentResponse</a></td>
+</tr>
+<tr>
+<td>更改广播电台</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INSetRadioStationIntentHandling" target="_blank" rel="noopener">INSetRadioStationIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INSetRadioStationIntent" target="_blank" rel="noopener">INSetRadioStationIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INSetRadioStationIntentResponse" target="_blank" rel="noopener">INSetRadioStationIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<p>如果使用单个处理程序对象来支持所有的调用处理意图，则你的处理程序可以采用<a href="https://developer.apple.com/reference/intents/INCarPlayDomainHandling" target="_blank" rel="noopener">INCarPlayDomainHandling</a>和<a href="https://developer.apple.com/reference/intents/INRadioDomainHandling" target="_blank" rel="noopener">INRadioDomainHandling</a>协议，而不是单独采用每个协议。</p>
+<blockquote>
+<p>重要</p>
+<p>CarPlay意图仅供汽车制造商使用支持CarPlay的App。</p>
+</blockquote>
+<h1 id="餐厅预订"><a href="#餐厅预订" class="headerlink" title="餐厅预订"></a>餐厅预订</h1><p>支持进行餐厅预订的应用可以使用意图来创建和管理用户预订。用户只能通过Maps应用进行预订，Maps应用会使用特定应用的Intents扩展程序来解决任何请求。表6-8列出了你可以实现的意图类型以及在Intents扩展中支持的类和协议。</p>
+<p>表6-8餐厅预订意图</p>
+<table>
+<thead>
+<tr>
+<th>用户意图</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>获取用户当前的餐厅预订 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INGetUserCurrentRestaurantReservationBookingsIntentHandling" target="_blank" rel="noopener">INGetUserCurrentRestaurantReservationBookingsIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INGetUserCurrentRestaurantReservationBookingsIntent" target="_blank" rel="noopener">INGetUserCurrentRestaurantReservationBookingsIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INGetUserCurrentRestaurantReservationBookingsIntentResponse" target="_blank" rel="noopener">INGetUserCurrentRestaurantReservationBookingsIntentResponse</a></td>
+</tr>
+<tr>
+<td>获取有关要与预订关联的用户的信息 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INGetRestaurantGuestIntentHandling" target="_blank" rel="noopener">INGetRestaurantGuestIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INGetRestaurantGuestIntent" target="_blank" rel="noopener">INGetRestaurantGuestIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INGetRestaurantGuestIntentResponse" target="_blank" rel="noopener">INGetRestaurantGuestIntentResponse</a></td>
+</tr>
+<tr>
+<td>需要预定时间时使用的默认值 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingDefaultsIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingDefaultsIntent" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingDefaultsIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingDefaultsIntentResponse" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingDefaultsIntentResponse</a></td>
+</tr>
+<tr>
+<td>获取当前可用的预订时间 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingsIntentHandling" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingsIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingsIntent" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingsIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INGetAvailableRestaurantReservationBookingsIntentResponse" target="_blank" rel="noopener">INGetAvailableRestaurantReservationBookingsIntentResponse</a></td>
+</tr>
+<tr>
+<td>用户进行预定 (Maps only)</td>
+<td>Handler:<a href="https://developer.apple.com/reference/intents/INBookRestaurantReservationIntentHandling" target="_blank" rel="noopener">INBookRestaurantReservationIntentHandling</a> protocol<br> Intent:<a href="https://developer.apple.com/reference/intents/INBookRestaurantReservationIntent" target="_blank" rel="noopener">INBookRestaurantReservationIntent</a><br> Response:<a href="https://developer.apple.com/reference/intents/INBookRestaurantReservationIntentResponse" target="_blank" rel="noopener">INBookRestaurantReservationIntentResponse</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>重要</p>
+<p>此API要求你在App可以使用它之前使用Apple Maps。有关如何使用的信息，请访问<a href="http://mapsconnect.apple.com/info/extensions" target="_blank" rel="noopener">MapsConnect-Extensions</a>。</p>
+</blockquote>
+<h1 id="SiriKit译文系列"><a href="#SiriKit译文系列" class="headerlink" title="SiriKit译文系列"></a>SiriKit译文系列</h1><blockquote>
+<p><a href="http://devhy.com/2016/10/31/14-sirikit-document-translation-01/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-1 SiriKit介绍</a><br><a href="http://devhy.com/2016/10/31/15-sirikit-document-translation-02/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-2 创建一个Intents扩展</a><br><a href="http://devhy.com/2016/11/01/16-sirikit-document-translation-03/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-3 解决和处理意图</a><br><a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-4 指定自定义词汇</a><br><a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-5 创建Intents UI扩展</a><br><a href="http://devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-1 参考-意图域</a><br><a href="http://devhy.com/2016/11/07/20-sirikit-document-translation-07/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-2 参考-App词汇文件格式</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/SiriKit/" rel="tag"># SiriKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/05/18-sirikit-document-translation-05/" rel="next" title="SiriKit官方文档 - Part1-5 创建Intents UI扩展">
+                <i class="fa fa-chevron-left"></i> SiriKit官方文档 - Part1-5 创建Intents UI扩展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/01/20-sirikit-document-translation-07/" rel="prev" title="SiriKit官方文档 - Part2-2 参考-App词汇文件格式">
+                SiriKit官方文档 - Part2-2 参考-App词汇文件格式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VoIP呼叫"><span class="nav-number">1.</span> <span class="nav-text">VoIP呼叫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息"><span class="nav-number">2.</span> <span class="nav-text">消息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#付款"><span class="nav-number">3.</span> <span class="nav-text">付款</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#照片"><span class="nav-number">4.</span> <span class="nav-text">照片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锻炼"><span class="nav-number">5.</span> <span class="nav-text">锻炼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#乘车预订"><span class="nav-number">6.</span> <span class="nav-text">乘车预订</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CarPlay"><span class="nav-number">7.</span> <span class="nav-text">CarPlay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#餐厅预订"><span class="nav-number">8.</span> <span class="nav-text">餐厅预订</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SiriKit译文系列"><span class="nav-number">9.</span> <span class="nav-text">SiriKit译文系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2016/11/12/19-sirikit-document-translation-06/';
+          this.page.identifier = '2016/11/12/19-sirikit-document-translation-06/';
+          this.page.title = 'SiriKit官方文档 - Part2-1 参考-意图域';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

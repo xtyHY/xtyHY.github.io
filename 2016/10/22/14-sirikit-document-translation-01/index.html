@@ -1,0 +1,913 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,SiriKit," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Introduction to SiriKit  SiriKit可以将你的App的内容和服务与系统集成。顾名思义，SiriKit用于支持Siri，使用户能够使用语音控制App。当然也可以用SiriKit将来自特定类型App的数据集成到整个地图体验中。在这两种情况下，添加SiriKit到你">
+<meta name="keywords" content="iOS,SiriKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SiriKit官方文档 - Part1-1 SiriKit介绍">
+<meta property="og:url" content="http://www.devhy.com/2016/10/22/14-sirikit-document-translation-01/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Introduction to SiriKit  SiriKit可以将你的App的内容和服务与系统集成。顾名思义，SiriKit用于支持Siri，使用户能够使用语音控制App。当然也可以用SiriKit将来自特定类型App的数据集成到整个地图体验中。在这两种情况下，添加SiriKit到你">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-29T08:00:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SiriKit官方文档 - Part1-1 SiriKit介绍">
+<meta name="twitter:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Introduction to SiriKit  SiriKit可以将你的App的内容和服务与系统集成。顾名思义，SiriKit用于支持Siri，使用户能够使用语音控制App。当然也可以用SiriKit将来自特定类型App的数据集成到整个地图体验中。在这两种情况下，添加SiriKit到你">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2016/10/22/14-sirikit-document-translation-01/"/>
+
+
+
+
+
+  <title>SiriKit官方文档 - Part1-1 SiriKit介绍 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2016/10/22/14-sirikit-document-translation-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SiriKit官方文档 - Part1-1 SiriKit介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-22T15:02:37+08:00">
+                2016-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/22/14-sirikit-document-translation-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/10/22/14-sirikit-document-translation-01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/index.html" target="_blank" rel="noopener">官方文档原文 - Introduction to SiriKit</a></p>
+</blockquote>
+<p>SiriKit可以将你的App的内容和服务与系统集成。顾名思义，SiriKit用于支持Siri，使用户能够使用语音控制App。当然也可以用SiriKit将来自特定类型App的数据集成到整个地图体验中。在这两种情况下，添加SiriKit到你的App的过程是一样的。</p>
+<a id="more"></a>
+<p>SiriKit包含两个框架，你可以使用它们来实现应用扩展。Intents Framework支持你的应用程序和系统之间的基本通信。你可以使用该框架来定义可执行的任务类型，并在被需要时执行这些任务。Intents UI Framework提供了可选的支持，以便在执行任务时显示自定义界面。</p>
+<p>SiriKit支持被分为多个域(domains)，每个域定义可以执行的一个或多个任务。为了支持SiriKit，应用程序必须支持以下域之一：</p>
+<ul>
+<li>VoIP呼叫</li>
+<li>消息</li>
+<li>付款</li>
+<li>照片</li>
+<li>锻炼</li>
+<li>乘车预订</li>
+<li>CarPlay（仅限汽车供应商）</li>
+<li>餐厅预订（需要苹果的额外支持）</li>
+</ul>
+<p>每个域定义一个App可以执行的一个或多个任务。这些任务称为意图(intents)，因为它们表示用户的意图，每个意图代表了一个包含多种与任务信息相关属性的自定义类。例如，Payments域中的意图包含具有要转移的金额和交易中涉及的用户的属性。当用户通过Siri或Maps发出请求时，系统会使用请求的详情填充意图对象，并将该对象传递到你的应用扩展中。你可以使用意图对象验证请求数据并执行关联的任务。</p>
+<p>有关每个域中包含的意图的列表，参阅<a href="http://devhy.com/2016/11/03/19-sirikit-document-translation-06/" target="_blank" rel="noopener">意图域</a>。有关Intents Framework中的类的列表，参阅<a href="https://developer.apple.com/reference/intents" target="_blank" rel="noopener">Intents Framework Reference</a>。</p>
+<h1 id="Intents和Intents-UI应用程序扩展"><a href="#Intents和Intents-UI应用程序扩展" class="headerlink" title="Intents和Intents UI应用程序扩展"></a>Intents和Intents UI应用程序扩展</h1><p>你通过两种不同类型的应用扩展添加对SiriKit的支持：</p>
+<ul>
+<li>Intents 扩展 用来接收来自系统的意图对象并执行相关联的任务。此扩展是必需的。</li>
+<li>Intents UI扩展 允许你在成功处理意图之后自定义Siri或Maps界面。此扩展是可选的。</li>
+</ul>
+<p>仅当需要时，系统才会启动和运行两个扩展，并且两个扩展必须提供明确定义的一组交互。所有支持SiriKit的App必须具有Intents扩展。提供Intents UI扩展是可选的，但它是为你的用户提供熟悉的体验的好办法。</p>
+<h1 id="Siri和Maps如何处理请求"><a href="#Siri和Maps如何处理请求" class="headerlink" title="Siri和Maps如何处理请求"></a>Siri和Maps如何处理请求</h1><p>Siri和Maps通过收集所需的数据并将它们转换为Intents对象以供你处理来管理用户请求。在Siri的情况下，Siri处理所有的自然语言，将语音请求转换为意图对象中的有效数据。因为语音请求最初可能不包含足够的信息，Siri与你的Intents扩展一同验证你了解用户的意思和你需要的数据。在此验证过程中，你可能会要求Siri向用户确认某些详细信息。在整个过程中，Siri管理与用户的所有交互，让你自由关注数据本身。</p>
+<p>相似的，Maps也会管理与用户的所有互动。由于Maps仅支持与乘车预订和餐厅预订相关的域，因此它的用户界面要专注于轻松完成这些任务。由于在Maps中，用户直接选择他们想要的内容，而不是通过口头提问。所以让源于地图的意图少有歧义，且不怎么需要验证，这最终简化了相关意图的处理过程。</p>
+<h1 id="SiriKit译文系列"><a href="#SiriKit译文系列" class="headerlink" title="SiriKit译文系列"></a>SiriKit译文系列</h1><blockquote>
+<p><a href="http://devhy.com/2016/10/31/14-sirikit-document-translation-01/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-1 SiriKit介绍</a><br><a href="http://devhy.com/2016/10/31/15-sirikit-document-translation-02/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-2 创建一个Intents扩展</a><br><a href="http://devhy.com/2016/11/01/16-sirikit-document-translation-03/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-3 解决和处理意图</a><br><a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-4 指定自定义词汇</a><br><a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-5 创建Intents UI扩展</a><br><a href="http://devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-1 参考-意图域</a><br><a href="http://devhy.com/2016/11/07/20-sirikit-document-translation-07/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-2 参考-App词汇文件格式</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/SiriKit/" rel="tag"># SiriKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/13/13-ios10-and-xcode8-adapt/" rel="next" title="iOS10和Xcode8踩坑记录">
+                <i class="fa fa-chevron-left"></i> iOS10和Xcode8踩坑记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/22/15-sirikit-document-translation-02/" rel="prev" title="SiriKit官方文档 - Part1-2 创建一个Intents扩展">
+                SiriKit官方文档 - Part1-2 创建一个Intents扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intents和Intents-UI应用程序扩展"><span class="nav-number">1.</span> <span class="nav-text">Intents和Intents UI应用程序扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Siri和Maps如何处理请求"><span class="nav-number">2.</span> <span class="nav-text">Siri和Maps如何处理请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SiriKit译文系列"><span class="nav-number">3.</span> <span class="nav-text">SiriKit译文系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2016/10/22/14-sirikit-document-translation-01/';
+          this.page.identifier = '2016/10/22/14-sirikit-document-translation-01/';
+          this.page.title = 'SiriKit官方文档 - Part1-1 SiriKit介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

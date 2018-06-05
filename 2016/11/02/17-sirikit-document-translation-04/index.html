@@ -1,0 +1,953 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,SiriKit," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HY‘s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Specifying Custom Vocabulary  有自定义词汇的App需要让Siri知道正确使用该词汇。自定义词汇是指Siri内在可能无法理解的任何术语。例如，一个乘车预定App将特定车辆类型称为“Vroom”，可以定义其术语并提供如何使用的示例。定义自定义词汇有助于Siri理">
+<meta name="keywords" content="iOS,SiriKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SiriKit官方文档 - Part1-4 指定自定义词汇">
+<meta property="og:url" content="http://www.devhy.com/2016/11/02/17-sirikit-document-translation-04/index.html">
+<meta property="og:site_name" content="HY‘s Blog">
+<meta property="og:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Specifying Custom Vocabulary  有自定义词汇的App需要让Siri知道正确使用该词汇。自定义词汇是指Siri内在可能无法理解的任何术语。例如，一个乘车预定App将特定车辆类型称为“Vroom”，可以定义其术语并提供如何使用的示例。定义自定义词汇有助于Siri理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-07T08:27:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SiriKit官方文档 - Part1-4 指定自定义词汇">
+<meta name="twitter:description" content="最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。  官方文档原文 - Specifying Custom Vocabulary  有自定义词汇的App需要让Siri知道正确使用该词汇。自定义词汇是指Siri内在可能无法理解的任何术语。例如，一个乘车预定App将特定车辆类型称为“Vroom”，可以定义其术语并提供如何使用的示例。定义自定义词汇有助于Siri理">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/2016/11/02/17-sirikit-document-translation-04/"/>
+
+
+
+
+
+  <title>SiriKit官方文档 - Part1-4 指定自定义词汇 | HY‘s Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HY‘s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/2016/11/02/17-sirikit-document-translation-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HY‘s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SiriKit官方文档 - Part1-4 指定自定义词汇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-02T17:28:00+08:00">
+                2016-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/02/17-sirikit-document-translation-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/11/02/17-sirikit-document-translation-04/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看SiriKit的官方文档，自啃 + Google翻译，如有错误或语义不当还望指出。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Intents/Conceptual/SiriIntegrationGuide/SpecifyingCustomVocabulary.html" target="_blank" rel="noopener">官方文档原文 - Specifying Custom Vocabulary</a></p>
+</blockquote>
+<p>有自定义词汇的App需要让Siri知道正确使用该词汇。自定义词汇是指Siri内在可能无法理解的任何术语。例如，一个乘车预定App将特定车辆类型称为“Vroom”，可以定义其术语并提供如何使用的示例。定义自定义词汇有助于Siri理解与你的App结合使用的命令，以此提高用户体验。</p>
+<a id="more"></a>
+<p>以下两种方法可以定义应用的自定义词汇：</p>
+<ul>
+<li>注册针对单个用户的术语，请使用<a href="https://developer.apple.com/reference/intents/invocabulary" target="_blank" rel="noopener">INVocabulary</a>对象。</li>
+<li>注册App中所有用户共有的术语命令，请在你的iOS应用中添加一个全局词汇表文件。</li>
+</ul>
+<blockquote>
+<p>重要</p>
+<p>Siri将自定义词汇当作提示，将尽可能多的定制术语纳入其中。主要针对用法可能会混淆的术语，并且Siri会始终优先使用术语，所以请把最重要的自定义词汇排在列表的前面。</p>
+</blockquote>
+<p>除了定义任何自定义术语，你使用全局词汇表文件为Siri提供你的每个App支持的意图的示例短语。Siri会在Siri指南中展示你的示例短语，用户可以阅读以了解如何调用你的App的服务。</p>
+<h1 id="注册用户特定词汇术语"><a href="#注册用户特定词汇术语" class="headerlink" title="注册用户特定词汇术语"></a>注册用户特定词汇术语</h1><p>使用共享的<a href="https://developer.apple.com/reference/intents/invocabulary" target="_blank" rel="noopener">INVocabulary</a>对象注册特定于单个用户的词汇。用户特定术语必须属于以下类别之一：</p>
+<ul>
+<li>联系人姓名（仅当不受“联系人”框架管理时）</li>
+<li>联系人组</li>
+<li>照片标签</li>
+<li>相册名称</li>
+<li>锻炼名称</li>
+<li>车辆配置文件名称（仅限CarPlay）</li>
+</ul>
+<p>当选择要注册的词汇时，选择可能被不熟悉你的App的人容易误解的术语。不要注册易于理解的术语，例如“我的相册”或“我的锻炼”。而是关注字面意义不同于你的App的这些术语的用法的术语。例如，消息传递App可能会从用户的收藏夹列表中注册电影名称(Screen Names)。</p>
+<p>要注册术语，请使用<code>INVocabulary</code>对象的<a href="https://developer.apple.com/reference/intents/invocabulary/1638998-setvocabularystrings" target="_blank" rel="noopener"><code>setVocabularyStrings:ofType:</code></a>方法。你注册的每组术语必须与特定类别相关联。如果注册一组新的术语将替换该类别的先前术语，那每次调用该方法时都要包含所需的所有术语。最重要的术语应始终在你创建的<a href="https://developer.apple.com/reference/foundation/nsorderedset" target="_blank" rel="noopener"><code>NSOrderedSet</code></a>对象中。</p>
+<p>代码4-1展示了注册一组自定义锻炼的样例。App基于最后一次使用的锻炼名称排序锻炼名称，将最近使用的锻炼放在有序集的前列。通常情况下你是从App注册用户特定的术语，而不是你的Intents扩展。</p>
+<p>代码4-1注册用户特定词汇</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSOrderedSet</span>* workoutNames = [<span class="keyword">self</span> sortedWorkoutNames];</span><br><span class="line"> </span><br><span class="line">INVocabulary* vocabulary = [INVocabulary sharedVocabulary];</span><br><span class="line">[vocabulary setVocabularyStrings:workoutNames </span><br><span class="line">						  ofType:INVocabularyStringTypeWorkoutActivityName];</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> workoutNames = <span class="keyword">self</span>.sortedWorkoutNames()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> vocabulary = <span class="type">INVocabulary</span>.shared()</span><br><span class="line">vocabulary.setVocabularyStrings(workoutNames, of: .workoutActivityName)</span><br></pre></td></tr></table></figure>
+<p>有关注册用户特定词汇术语的更多信息，请参考<a href="https://developer.apple.com/reference/intents/invocabulary" target="_blank" rel="noopener">INVocabulary Class Reference</a>。</p>
+<h1 id="创建全局词汇文件"><a href="#创建全局词汇文件" class="headerlink" title="创建全局词汇文件"></a>创建全局词汇文件</h1><p>使用全局词汇表文件来指定使用App的示例短语，以及注册App的所有用户都通用的字词。所有App应至少提供一些示例短语，Siri在Siri指南中显示这些短语作为如何使用你的App的示例。如果你的App使用适用于该App的所有用户的自定义术语，则可以在全局词汇表文件中声明该术语。</p>
+<blockquote>
+<p>注意</p>
+<p>建议你为App提供一个全局词汇文件，并使用它为你的每个App支持的意图指定一个或多个示例短语。虽然全局词汇文件不是必须提供的，但App Store对声明Siri支持但不包含样本短语的App发出警告。</p>
+</blockquote>
+<p>全局术语必须属于以下类别之一：</p>
+<ul>
+<li>乘坐选项</li>
+<li>锻炼名称</li>
+</ul>
+<p>全局词汇表文件是一个属性列表文件，其名称为<code>AppIntentVocabulary.plist</code>，你将其包含在iOS应用包中。将此文件的初始版本放置在与App的基本开发语言相对应的<code>.lproj</code>目录中。在每个App的特定语言项目（.lproj）目录中包含文件的本地化版本。在Xcode中，你可以从文件检查器(File inspector)中自动创建本地化版本。</p>
+<h2 id="创建全局词汇表文件"><a href="#创建全局词汇表文件" class="headerlink" title="创建全局词汇表文件"></a>创建全局词汇表文件</h2><ol>
+<li>选择 New &gt; File。</li>
+<li>在 iOS &gt; Resource，选择Property List文件类型。</li>
+<li>点击 Next。</li>
+<li>将文件的名称设置为 AppIntentVocabulary.plist。</li>
+<li>单击 Create。</li>
+<li>在项目中选择 AppIntentVocabulary.plist 文件。</li>
+<li>在根元素下添加两个键。<ul>
+<li>将第一个键的名称设置为 ParameterVocabularies。</li>
+<li>将第二个键的名称设置为 IntentPhrases。</li>
+</ul>
+</li>
+<li>按 <a href="http://devhy.com/2016/11/03/20-sirikit-document-translation-07/" target="_blank" rel="noopener">App Vocabulary File Format</a> 中所述配置其余键。</li>
+</ol>
+<p>全局词汇表文件在根级别包含两个Key：</p>
+<ul>
+<li><code>ParameterVocabularies</code> Key 定义App的自定义术语及其应用的意图参数。</li>
+<li><code>IntentPhrases</code> Key 包含用于调用服务的示例短语。如果你为App定义自定义术语，至少有一些范例词组来展示如何使用这些字词。</li>
+</ul>
+<p>术语必须与意图对象的特定属性相关联。当Siri听到一个自定义术语时，它使用该术语来填充意图对象中的相应属性。（具体来说，它会将你为该术语提供的标识符分配给属性。）你可以将同一术语与多个意图相关联。例如，一个自定义锻炼名称可能应用在所有与锻炼相关的意图。</p>
+<blockquote>
+<p>重要</p>
+<p>在开发过程中，Xcode将你的全局词汇转移到Siri，但是会限制该词汇到你的开发设备的可用性。获取词汇数据不是即时的，因此在测试任何自定义词汇之前，你可能需要等待一两分钟。</p>
+</blockquote>
+<p>有关全局词汇表文件的结构和键的详细信息，请参阅<a href="http://devhy.com/2016/11/03/20-sirikit-document-translation-07/" target="_blank" rel="noopener">App Vocabulary File Format</a>。</p>
+<h1 id="SiriKit译文系列"><a href="#SiriKit译文系列" class="headerlink" title="SiriKit译文系列"></a>SiriKit译文系列</h1><blockquote>
+<p><a href="http://devhy.com/2016/10/31/14-sirikit-document-translation-01/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-1 SiriKit介绍</a><br><a href="http://devhy.com/2016/10/31/15-sirikit-document-translation-02/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-2 创建一个Intents扩展</a><br><a href="http://devhy.com/2016/11/01/16-sirikit-document-translation-03/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-3 解决和处理意图</a><br><a href="http://devhy.com/2016/11/02/17-sirikit-document-translation-04/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-4 指定自定义词汇</a><br><a href="http://devhy.com/2016/11/03/18-sirikit-document-translation-05/" target="_blank" rel="noopener">SiriKit官方文档 - Part1-5 创建Intents UI扩展</a><br><a href="http://devhy.com/2016/11/05/19-sirikit-document-translation-06/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-1 参考-意图域</a><br><a href="http://devhy.com/2016/11/07/20-sirikit-document-translation-07/" target="_blank" rel="noopener">SiriKit官方文档 - Part2-2 参考-App词汇文件格式</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/SiriKit/" rel="tag"># SiriKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/31/16-sirikit-document-translation-03/" rel="next" title="SiriKit官方文档 - Part1-3 解决和处理意图">
+                <i class="fa fa-chevron-left"></i> SiriKit官方文档 - Part1-3 解决和处理意图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/05/18-sirikit-document-translation-05/" rel="prev" title="SiriKit官方文档 - Part1-5 创建Intents UI扩展">
+                SiriKit官方文档 - Part1-5 创建Intents UI扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="寰宇" />
+          <p class="site-author-name" itemprop="name">寰宇</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.aemiot.com/" title="Aem's Blog" target="_blank">Aem's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://yitar.me/" title="Yitar's Blog" target="_blank">Yitar's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/cedric_jc" title="Cedric JC" target="_blank">Cedric JC</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/u011427518/" title="瑾宇博客" target="_blank">瑾宇博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注册用户特定词汇术语"><span class="nav-number">1.</span> <span class="nav-text">注册用户特定词汇术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建全局词汇文件"><span class="nav-number">2.</span> <span class="nav-text">创建全局词汇文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建全局词汇表文件"><span class="nav-number">2.1.</span> <span class="nav-text">创建全局词汇表文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SiriKit译文系列"><span class="nav-number">3.</span> <span class="nav-text">SiriKit译文系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.devhy.com/2016/11/02/17-sirikit-document-translation-04/';
+          this.page.identifier = '2016/11/02/17-sirikit-document-translation-04/';
+          this.page.title = 'SiriKit官方文档 - Part1-4 指定自定义词汇';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
