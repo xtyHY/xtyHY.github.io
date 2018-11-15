@@ -154,15 +154,14 @@
 <meta property="og:site_name" content="寰宇小仓库">
 <meta property="og:description" content="上篇我们讲了App Extension，这篇就是纯SiriKit相关的了，主要是基于融云实现SiriKit发送消息 吐槽一下，在写这个Demo之前，github上几乎每个demo都番了个遍，本来想站在巨人的肩膀上，没想到几乎都是创建了工程然后带着初始化的代码就提交上去了。稍好一点的，就是在自建UI部分，加了个图，但是没有任何与数据的交互😂。最后各种猜测、尝试、踩坑完成了这个Demo。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-00.gif">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-0.jpg?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-1.png?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-2.jpg?imageMogr2/thumbnail/!50p">
-<meta property="og:updated_time" content="2018-04-11T09:32:51.000Z">
+<meta property="og:image" content="http://www.devhy.com/media/22-SiriKit-Practice-00.gif">
+<meta property="og:image" content="http://www.devhy.com/media/22-SiriKit-Practice-01.png">
+<meta property="og:image" content="http://www.devhy.com/media/22-SiriKit-Practice-02.jpg">
+<meta property="og:updated_time" content="2018-11-15T06:54:50.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SiriKit实践 - 基于融云实现使用SiriKit发送消息">
 <meta name="twitter:description" content="上篇我们讲了App Extension，这篇就是纯SiriKit相关的了，主要是基于融云实现SiriKit发送消息 吐槽一下，在写这个Demo之前，github上几乎每个demo都番了个遍，本来想站在巨人的肩膀上，没想到几乎都是创建了工程然后带着初始化的代码就提交上去了。稍好一点的，就是在自建UI部分，加了个图，但是没有任何与数据的交互😂。最后各种猜测、尝试、踩坑完成了这个Demo。">
-<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-00.gif">
+<meta name="twitter:image" content="http://www.devhy.com/media/22-SiriKit-Practice-00.gif">
 
 
 
@@ -413,7 +412,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-04-11 17:32:51" itemprop="dateModified" datetime="2018-04-11T17:32:51+08:00">2018-04-11</time>
+                <time title="修改时间：2018-11-15 14:54:50" itemprop="dateModified" datetime="2018-11-15T14:54:50+08:00">2018-11-15</time>
               
             
           </span>
@@ -478,11 +477,10 @@
       
         <p>上篇我们讲了App Extension，这篇就是纯SiriKit相关的了，主要是基于融云实现SiriKit发送消息</p>
 <p>吐槽一下，在写这个Demo之前，github上几乎每个demo都番了个遍，本来想站在巨人的肩膀上，没想到几乎都是创建了工程然后带着初始化的代码就提交上去了。稍好一点的，就是在自建UI部分，加了个图，但是没有任何与数据的交互😂。最后各种猜测、尝试、踩坑完成了这个Demo。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-00.gif" alt="20-SiriKit-Practice-00"></p>
+<p><img src="/media/22-SiriKit-Practice-00.gif" alt="20-SiriKit-Practice-00"></p>
 <a id="more"></a>
 <h1 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h1><p>Siri是通过对用户的语句进行分析成大致的指令来进行一些操作，之前Siri只能完成一些系统的控制。iOS 10后新增的SiriKit让第三方应用能够接入，为一些不方便用手交互的时候提供语言上的交互。</p>
-<h2 id="意图域与意图"><a href="#意图域与意图" class="headerlink" title="意图域与意图"></a>意图域与意图</h2><p>用户语句的识别和分解成指令本就是一个比较复杂的过程，而SiriKit简化了这些，SiriKit会识别用户的语句，并拆分有用的信息传递给我们。有种喝三叶口嚼酒的感觉😂</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-0.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<h2 id="意图域与意图"><a href="#意图域与意图" class="headerlink" title="意图域与意图"></a>意图域与意图</h2><p>用户语句的识别和分解成指令本就是一个比较复杂的过程，而SiriKit简化了这些，SiriKit会识别用户的语句，并拆分有用的信息传递给我们。</p>
 <p>苹果官方定义了<code>Intent Domain</code>(意图域)和<code>Intent</code>(意图)的概念，实际上本质就是一个信息拆解的归类。<code>意图域</code>是比较大的划分，每个<code>意图域</code>下有各自支持的<code>意图</code>，最终分析来把可能你需要的信息交给你。</p>
 <p>比如: “发消息给y说z”，SiriKit分析后它属于<code>消息</code>意图域下的<code>发消息</code>意图，然后把y和z解析给你(具体解析了什么请往后看)</p>
 <h3 id="如何支持"><a href="#如何支持" class="headerlink" title="如何支持"></a>如何支持</h3><p>根据官方文档，你需要在创建后来指定配置你的App支持哪些<code>意图域</code>和其下面的哪些<code>意图</code>。用户说出的语句被解析成指令后，首先会匹配App名称，然后匹配解析出来的意图是否和你支持的一致，如果一致才会给你的App进行处理。</p>
@@ -491,8 +489,8 @@
 <h2 id="目前应用场景"><a href="#目前应用场景" class="headerlink" title="目前应用场景"></a>目前应用场景</h2><p>从国内来看，QQ支持的是消息/VoIP呼叫，Uber和滴滴支持的是乘车预定，Keep支持的是锻炼。</p>
 <h2 id="上手实践"><a href="#上手实践" class="headerlink" title="上手实践"></a>上手实践</h2><p>经过各种考虑后，决定从消息这个意图来尝试，优点有: 直观、聊天接入方便、应用场景多、参考文章/Demo好找(然而我错了,SiriKit真正实践的Demo和文章是真的少)。这次实现的<a href="https://github.com/xtyHY/SiriKit-Demo-Message" target="_blank" rel="noopener">Demo地址</a></p>
 <h3 id="创建扩展"><a href="#创建扩展" class="headerlink" title="创建扩展"></a>创建扩展</h3><p>其实际包含两项<code>Intents Extension</code>(处理逻辑, 必选)，<code>Intents UI Extension</code>(自定义展示, 可选)。在创建的<code>Intents</code>的时候，根据是否要自定义UI来勾选<code>Inclue UI Extension</code></p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-1.png?imageMogr2/thumbnail/!50p" alt="20-SiriKit-Practice-07"></p>
-<p>创建后是这样的：<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-07-2.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p><img src="/media/22-SiriKit-Practice-01.png" alt="20-SiriKit-Practice-07"></p>
+<p>创建后是这样的：<br><img src="/media/22-SiriKit-Practice-02.jpg" alt=""></p>
 <p>创建完成后你会发现有示例代码和默认配置了消息相关的三个意图</p>
 <h3 id="Intent-Extension"><a href="#Intent-Extension" class="headerlink" title="Intent Extension"></a>Intent Extension</h3><p>//待补<br>协议方法实现<br>resolve 匹配数据并检查够不够，坑点，INPerson匹配的是手机联系人，很毒，必须实现<br>confirm 提示是否要进行处理，可选<br>handle 进行处理并告知处理结果，必须实现</p>
 <p>Intent Handle可以拆分来实现，同一个意图域的建议一起实现，不同意图域的建议拆分实现，以减少内存，注意对应的方法<a href="http://www.devhy.com/2016/11/05/19-sirikit-document-translation-06/">SiriKit官方文档翻译-意图域</a></p>
@@ -640,7 +638,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -146,23 +146,25 @@
 
 
 
-  <meta name="keywords" content="iOS12,Xcode10">
+  <meta name="keywords" content="iOS12,xcode10">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode10和iOS12适配（持续更新）">
+<meta property="og:title" content="28-xcode10和iOS12适配（随时更新）">
 <meta property="og:url" content="http://www.devhy.com/28-xcode10-and-ios12/index.html">
 <meta property="og:site_name" content="寰宇小仓库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_00.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_01.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_02.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_03.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_04.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_05.png">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_06.png">
-<meta property="og:updated_time" content="2018-06-05T06:31:47.582Z">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_00.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_01.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_02.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_03.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_04.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_05.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_06.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_07.png">
+<meta property="og:image" content="http://www.devhy.com/media/28-xcode10_ios12_08.jpg">
+<meta property="og:updated_time" content="2018-11-15T07:05:16.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode10和iOS12适配（持续更新）">
-<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_00.png">
+<meta name="twitter:title" content="28-xcode10和iOS12适配（随时更新）">
+<meta name="twitter:image" content="http://www.devhy.com/media/28-xcode10_ios12_00.png">
 
 
 
@@ -181,7 +183,7 @@
   };
 </script>
 
-  <title>Xcode10和iOS12适配（持续更新） | 寰宇小仓库</title>
+  <title>28-xcode10和iOS12适配（随时更新） | 寰宇小仓库</title>
   
 
 
@@ -371,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Xcode10和iOS12适配（持续更新）
+          <h1 class="post-title" itemprop="name headline">28-xcode10和iOS12适配（随时更新）
               
             
           </h1>
@@ -396,12 +398,24 @@
                 
               
 
-              <time title="创建时间：2018-06-05 16:22:37 / 修改时间：14:31:47" itemprop="dateCreated datePublished" datetime="2018-06-05T16:22:37+08:00">2018-06-05</time>
+              <time title="创建时间：2018-06-05 16:22:37" itemprop="dateCreated datePublished" datetime="2018-06-05T16:22:37+08:00">2018-06-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-15 15:05:16" itemprop="dateModified" datetime="2018-11-15T15:05:16+08:00">2018-11-15</time>
               
             
           </span>
@@ -464,21 +478,43 @@
       
 
       
-        <p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_00.png" alt="xcode10_ios12_00"><br><a id="more"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨晚熬夜看完了<code>WWDC 2018</code>，睡前电脑挂着下载<code>Xcode10</code>。手机装好了<code>iOS12</code>，体验了一番，感觉比iOS11快多了，看了一眼各家App和我司的App，松了一口气，初步看来今年应该不需要做太多的适配工作，然后就睡了。（然而，果然不能立flag！😂）</p>
-<p>早上晚到了一些，Xcode10解压了一下，开始初步评估一下适配。emmmm，工程跑不起来了…好了果然不能低估，开干。</p>
-<h1 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h1><h2 id="重复文件报错"><a href="#重复文件报错" class="headerlink" title="重复文件报错"></a>重复文件报错</h2><p>一上来就是build没2秒就报错了，看报错的说法是有重复的info.plist。<br><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_01.png" alt="xcode10_ios12_01"></p>
+        <p><img src="/media/28-xcode10_ios12_00.png" alt="28-xcode10_ios12_00"><br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨晚熬夜看完了<code>WWDC 2018</code>，睡前电脑挂着下载<code>28-xcode10</code>。手机装好了<code>iOS12</code>，体验了一番，感觉比iOS11快多了，看了一眼各家App和我司的App，松了一口气，初步看来今年应该不需要做太多的适配工作，然后就睡了。（然而，果然不能立flag！😂）</p>
+<p>早上晚到了一些，28-xcode10解压了一下，开始初步评估一下适配。emmmm，工程跑不起来了…好了果然不能低估，开干。</p>
+<h1 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h1><h2 id="重复文件报错"><a href="#重复文件报错" class="headerlink" title="重复文件报错"></a>重复文件报错</h2><p>一上来就是build没2秒就报错了，看报错的说法是有重复的info.plist。<br><img src="/media/28-xcode10_ios12_01.png" alt="28-xcode10_ios12_01"></p>
 <p>我们组件化后把一些三方库和封装方法打成了一个私有库。进去看了一下，我们使用了<code>阿里云统计 + 推送 + Alipay</code>，里面确实有好几个<code>info.plist</code>，删除了就好了。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_02.png" alt="xcode10_ios12_02"></p>
+<p><img src="/media/28-xcode10_ios12_02.png" alt="28-xcode10_ios12_02"></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>临时解决方案也可以参考<a href="https://juejin.im/user/5a532f206fb9a01ca7134bfa" target="_blank" rel="noopener">掘金@来来来小牛仔</a>在评论中提到的：</p>
+<blockquote>
+<p>参考Stack Overflow中<a href="https://stackoverflow.com/questions/50718018" target="_blank" rel="noopener">Xcode 10 Error: Multiple commands produce</a>，修改Xcode编译配置<code>Xcode-&gt;File-&gt;Project Settings/Workspace Setting-&gt; Build System -&gt; Legacy Build System.</code></p>
+</blockquote>
+<p><em>这里定义为临时解决方案的原因是：使用了28-xcode10编译的新特性而抛出错误，既然是编译器的特性，那么最好还是接受它的报错去修复。作为短暂的过渡使用老的编译方式是可以的，长期我觉得是不合适的。</em></p>
 <h2 id="c-6-0-9消失了？"><a href="#c-6-0-9消失了？" class="headerlink" title="c++.6.0.9消失了？"></a>c++.6.0.9消失了？</h2><p>报错：<code>library not found for -lstdc++.6.0.9</code></p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_03.png" alt="xcode10_ios12_03"></p>
+<p><img src="/media/28-xcode10_ios12_03.png" alt="28-xcode10_ios12_03"></p>
 <p>第一反应是去<code>Build Phases</code>里的<code>Link Binary With Libraries</code>进行添加，然后发现选择<code>frameworks and libraries</code>里已经没有了这个库了😂，又回去看了一下Xcode9里是有的。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_04.png" alt="xcode10_ios12_04"></p>
+<p><img src="/media/28-xcode10_ios12_04.png" alt="28-xcode10_ios12_04"></p>
 <p>但是因为之前在Xcode9上是正常跑的项目，而且我们组件化后，依赖是在私有库的podspec里定义的，全局搜了下所有的podspec并没有依赖过这个lib。</p>
 <p>想起来<code>pod isntall</code>后会有一个<code>Pods-xxxx.xcconfig</code>文件，果然找到了这个<code>-l stdc++.6.0.9</code>，但是这边是汇总了所有的依赖，无法找到源头。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_05.png" alt="xcode10_ios12_05"></p>
+<p><img src="/media/28-xcode10_ios12_05.png" alt="28-xcode10_ios12_05"></p>
 <p>那如果直接在这里删掉这个依赖呢？是不是会爆出更清晰的错？<br>答案是就如下图，因为删掉了这个依赖，那依赖这个lib的源码就出现了一些调用方法的报错，如下图，很明显的发现了这个叫<code>libQYSDK.a</code>的库。恩，就是三方库<code>七鱼客服</code>了😂，赶紧联系了一波工具提供方。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/xcode10_ios12_06.png" alt="xcode10_ios12_06"></p>
+<p><img src="/media/28-xcode10_ios12_06.png" alt="28-xcode10_ios12_06"></p>
+<h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><p>临时方案可以参考：<a href="https://juejin.im/user/5798ba2b5bbb5000630178ab" target="_blank" rel="noopener">掘金@End</a> 在评论区提到</p>
+<blockquote>
+<p>将Xcode9的libstdc++6.0.9.tbd拷贝到28-xcode10中使用。</p>
+</blockquote>
+<p>感谢<a href="https://juejin.im/user/592abb842f301e0057ec38d6" target="_blank" rel="noopener">掘金@vvveiii</a>提醒，之前在文档里没有查到相关信息，刚刚再去开发者论坛中看到<a href="https://forums.developer.apple.com/message/314346#314346" target="_blank" rel="noopener">Where is libstdc++.6.dylib in 28-xcode10 beta</a> 以及 <a href="https://forums.developer.apple.com/message/174088#174354" target="_blank" rel="noopener">libstdc++ is not supported by the tvOS platform?</a> 中 staff的回应是请迁移到<code>libc++</code>库。</p>
+<p><strong>所以<code>28-xcode10</code>中<code>libstdc++</code>相关的3个库(<code>libstdc++</code>、<code>libstdc++.6</code>、<code>libstdc++6.0.9</code>)应该都是被彻底废弃了</strong>，如果你使用的三方库中有依赖，请尽快和提供方沟通，告知他们迁移吧。如果自己开发使用，也尽快考虑迁移的事宜吧。</p>
+<h2 id="Copy-Pods-Resources失效"><a href="#Copy-Pods-Resources失效" class="headerlink" title="Copy Pods Resources失效"></a>Copy Pods Resources失效</h2><p>经过上面一波操作后，终于编译通过了，也跑起来，就在以为一切都正常起来的时候，突然 <strong>崩！溃！了！</strong> </p>
+<p>一看报错原因，是<code>Profile.StoryBoard</code>没有找到，我们做了组件化后很多资源文件是在各自的pod里的，理论上这个sb应该在执行<code>Copy Pods Resources</code>后被copy到在<code>*.app</code>的包里</p>
+<p><img src="/media/28-xcode10_ios12_07.png" alt="28-xcode10_ios12_07"></p>
+<p>于是去查看了一下编译后生成的Product，所有组件库的资源文件 <strong>都！不！在！</strong> </p>
+<p>怀疑是这个指令没有执行，然后clear重新编译，盯着编译过程。果然，只执行了<code>Check Pods Manifest.lock</code>和<code>Embed Pods Frameworks</code>。</p>
+<p><img src="/media/28-xcode10_ios12_08.jpg" alt="28-xcode10_ios12_08"></p>
+<p>看了下<code>CocoaPods</code>的issues里没有人提到这些，估计新版是好的，赶紧装了<code>CocoaPods-1.5.3</code>再把Pods文件夹删了重新install一下，就好了。</p>
+<h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><p>确实是需要升级<code>CocoaPods</code>版本<code>&gt;=1.4.0</code>以上，可见Github上的一个issues <a href="https://github.com/CocoaPods/CocoaPods/issues/7823" target="_blank" rel="noopener">28-xcode10 beta can’t load bundles from CocoaPods</a></p>
+<hr>
+<p>至此我们的工程已经能正常通过<code>Xcode 10</code>编译，并运行在<code>iOS 12 beta</code>的手机上了。</p>
+<p>粗略对一些业务场景进行了使用，没有发现明显需要进行处理的问题😆</p>
 
       
     </div>
@@ -501,7 +537,7 @@
           
             <a href="/tags/iOS12/" rel="tag"># iOS12</a>
           
-            <a href="/tags/Xcode10/" rel="tag"># Xcode10</a>
+            <a href="/tags/xcode10/" rel="tag"># xcode10</a>
           
         </div>
       
@@ -514,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/26-fastlane-usage/" rel="next" title="和重复劳动说再见-使用fastlane进行iOS打包">
-                <i class="fa fa-chevron-left"></i> 和重复劳动说再见-使用fastlane进行iOS打包
+              <a href="/27-auto-generate-simulator-app/" rel="next" title="生成用于iOS模拟器安装的包">
+                <i class="fa fa-chevron-left"></i> 生成用于iOS模拟器安装的包
               </a>
             
           </div>
@@ -602,7 +638,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -762,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题与解决"><span class="nav-number">2.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复文件报错"><span class="nav-number">2.1.</span> <span class="nav-text">重复文件报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-6-0-9消失了？"><span class="nav-number">2.2.</span> <span class="nav-text">c++.6.0.9消失了？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题与解决"><span class="nav-number">2.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复文件报错"><span class="nav-number">2.1.</span> <span class="nav-text">重复文件报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">2.1.1.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-6-0-9消失了？"><span class="nav-number">2.2.</span> <span class="nav-text">c++.6.0.9消失了？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copy-Pods-Resources失效"><span class="nav-number">2.3.</span> <span class="nav-text">Copy Pods Resources失效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">补充</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -942,7 +978,7 @@
       var disqus_config = function () {
         this.page.url = 'http://www.devhy.com/28-xcode10-and-ios12/';
         this.page.identifier = '28-xcode10-and-ios12/';
-        this.page.title = 'Xcode10和iOS12适配（持续更新）';
+        this.page.title = '28-xcode10和iOS12适配（随时更新）';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');

@@ -152,18 +152,18 @@
 <meta property="og:url" content="http://www.devhy.com/26-fastlane-usage/index.html">
 <meta property="og:site_name" content="寰宇小仓库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane00.png?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane01.png?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane02.png?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane03.png?imageMogr2/thumbnail/!50p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane06.png?imageMogr2/thumbnail/!40p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane07.png?imageMogr2/thumbnail/!40p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane08.png?imageMogr2/thumbnail/!40p">
-<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2018-01-23-fastlane-10.png">
-<meta property="og:updated_time" content="2018-05-09T06:22:48.000Z">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane00.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane01.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane02.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane03.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane06.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane07.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane08.png">
+<meta property="og:image" content="http://www.devhy.com/media/26-fastlane10.png">
+<meta property="og:updated_time" content="2018-11-15T06:58:32.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="和重复劳动说再见-使用fastlane进行iOS打包">
-<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane00.png?imageMogr2/thumbnail/!50p">
+<meta name="twitter:image" content="http://www.devhy.com/media/26-fastlane00.png">
 
 
 
@@ -414,7 +414,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-09 14:22:48" itemprop="dateModified" datetime="2018-05-09T14:22:48+08:00">2018-05-09</time>
+                <time title="修改时间：2018-11-15 14:58:32" itemprop="dateModified" datetime="2018-11-15T14:58:32+08:00">2018-11-15</time>
               
             
           </span>
@@ -477,23 +477,23 @@
       
 
       
-        <p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane00.png?imageMogr2/thumbnail/!50p" alt="fastlane00"></p>
+        <p><img src="/media/26-fastlane00.png" alt="fastlane00"></p>
 <a id="more"></a>
-<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="初识fastlane"><a href="#初识fastlane" class="headerlink" title="初识fastlane"></a>初识fastlane</h2><p><a href="https://fastlane.tools/" target="_blank" rel="noopener">fastlane</a>是一个通过简单命令来完成诸如截图、获取证书、编译、导出安装包、提交iTunesConnect等一系列操作的工具，它同时支持iOS和Android。<br>你能够通过简单的方式配置流程进行的顺序，并通过非常简单的命令执行其中的一个流程。当然它的简单并不代表功能也简陋，有开源社区的支持，更新迅速且有很多功能能够满足你的需求。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane01.png?imageMogr2/thumbnail/!50p" alt="fastlane01"></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="初识fastlane"><a href="#初识fastlane" class="headerlink" title="初识fastlane"></a>初识fastlane</h2><p><a href="https://fastlane.tools/" target="_blank" rel="noopener">fastlane</a>是一个通过简单命令来完成诸如截图、获取证书、编译、导出安装包、提交iTunesConnect等一系列操作的工具，它同时支持iOS和Android。<br>你能够通过简单的方式配置流程进行的顺序，并通过非常简单的命令执行其中的一个流程。当然它的简单并不代表功能也简陋，有开源社区的支持，更新迅速且有很多功能能够满足你的需求。<br><img src="/media/26-fastlane01.png" alt="fastlane01"></p>
 <h2 id="为什么使用它"><a href="#为什么使用它" class="headerlink" title="为什么使用它"></a>为什么使用它</h2><p>之前我们使用的是jenkins内的<a href="https://wiki.jenkins.io/display/JENKINS/Xcode+Plugin" target="_blank" rel="noopener">Xcode integration</a>进行编译工作，但是其更新比较慢（<em>至2017.12.20还未支持Xcode9</em>），Xcode大版本更新后出现无法继续使用的问题。<br>后改用fastlane，发现其使用和配置还算简单，有开源社区支持，更新迅速功能强大。且相比jenkins里的插件，fastlane可以单独使用，也<a href="https://docs.fastlane.tools/best-practices/continuous-integration/" target="_blank" rel="noopener">可以被多种CI接入</a>。</p>
 <h1 id="配置使用环境"><a href="#配置使用环境" class="headerlink" title="配置使用环境"></a>配置使用环境</h1><p>fastlane使用的是ruby环境且对ruby有版本要求（官网要求是ruby2.0以上），所以如果需要的话更新一波ruby，然后通过gem安装fastlane。</p>
 <h2 id="更新ruby"><a href="#更新ruby" class="headerlink" title="更新ruby"></a>更新ruby</h2><p>更新ruby使用的是<a href="https://www.baidu.com/link?url=LbSqGKkanCQGO57BjiRIFunvIO4sO1jBm9icE0rmCx_&amp;wd=&amp;eqid=e3e9ac4b00016e09000000025a3b2467" target="_blank" rel="noopener">RVM工具</a>，在命令行进行如下操作，安装时可能出现进度不动，多半可能是因为被墙了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装RVM工具</span></span><br><span class="line">RVMcurl -L get.rvm.io | bash -s stable</span><br><span class="line"></span><br><span class="line"><span class="comment">#列出可安装的ruby版本（有原始的ruby也有其他版本的版本）</span></span><br><span class="line">rvm list known</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据刚才列出的ruby版本，安装一个ruby版本</span></span><br><span class="line">rvm install ruby-xxxxx（xxx为版本号）</span><br></pre></td></tr></table></figure>
-<p>列出来ruby的版本，选择#MRI Rubies这一大类下面的，我装的是2.4的版本<br><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane02.png?imageMogr2/thumbnail/!50p" alt="fastlane02"></p>
-<p>因为我之前已经安装过了，所以提示是已经安装成功<br><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane03.png?imageMogr2/thumbnail/!50p" alt="fastlane03"></p>
+<p>列出来ruby的版本，选择#MRI Rubies这一大类下面的，我装的是2.4的版本<br><img src="/media/26-fastlane02.png" alt="fastlane02"></p>
+<p>因为我之前已经安装过了，所以提示是已经安装成功<br><img src="/media/26-fastlane03.png" alt="fastlane03"></p>
 <h2 id="安装fastlane"><a href="#安装fastlane" class="headerlink" title="安装fastlane"></a>安装fastlane</h2><p>如果ruby版本满足要求，可以直接在命令行执行以下命令安装fastlane，这个安装比较顺利没出现报错，如果有报错可以根据原因搜索一下解决办法。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装fastlane</span></span><br><span class="line">sudo gem install -n /usr/<span class="built_in">local</span>/bin fastlane</span><br></pre></td></tr></table></figure>
 <h1 id="配置fastlane"><a href="#配置fastlane" class="headerlink" title="配置fastlane"></a>配置fastlane</h1><p>使用的环境搭建好了，就可以进行这一步来配置fastlane了。</p>
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>执行默认的初始化</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 项目目录</span><br><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
 <p>根据提示输入信息，这一步我没有按照提示处理，因为在有多个BundleID多个target的工程上使用，实际上生成的配置还是要修改的。如果你的项目只有一个bundle id也只有一个开发者账号的话，可以直接遵循官方的步骤配置。</p>
-<p><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane06.png?imageMogr2/thumbnail/!40p" alt="fastlane06"></p>
-<p>初始化完成后可以看到项目目录里多出了一个fastlane文件夹，内有两个比较重要的文件<a href="#Appfile">Appfile</a>和<a href="#Fastfile">Fastfile</a><br><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane07.png?imageMogr2/thumbnail/!40p" alt="fastlane07"><br><img src="http://oa73hsfk5.bkt.clouddn.com/2017-12-21-fastlane08.png?imageMogr2/thumbnail/!40p" alt="fastlane08"></p>
+<p><img src="/media/26-fastlane06.png" alt="fastlane06"></p>
+<p>初始化完成后可以看到项目目录里多出了一个fastlane文件夹，内有两个比较重要的文件<a href="#Appfile">Appfile</a>和<a href="#Fastfile">Fastfile</a><br><img src="/media/26-fastlane07.png" alt="fastlane07"><br><img src="/media/26-fastlane08.png" alt="fastlane08"></p>
 <h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><p>通过在命令行执行<code>fastlane [lane-name]</code>以执行<code>fastlane/Fastfile</code>中的一个<code>lane</code>。<br>这个操作会依次从<a href="#.env">.env文件</a>、<a href="#Appfile">Appfile文件</a>、<a href="#Deliverfile">Deliverfile文件</a>读取配置信息，最后由Fastfile中的逻辑来进行工作。</p>
 <h2 id="配置和使用"><a href="#配置和使用" class="headerlink" title="配置和使用"></a>配置和使用</h2><p>fastlane可以通过配置 .env文件、Appfile、Deliverfile、Fastfile 来完成各种工作。</p>
 <p>其中Fastfile是最核心的用来控制流程走向的配置文件，.env和Appfile可以辅助Fastfile来设置一些参数，Deliverfile可用于配置提交iTunesConnect的一些参数。</p>
@@ -529,7 +529,7 @@
 <h2 id="private-lane"><a href="#private-lane" class="headerlink" title="private_lane"></a>private_lane</h2><p>私有lane其实就像开发的时候的私有方法一样，外部是使用不到的，如在命令行中使用<code>fastlane deal_param</code>是执行不了的，但在Fastfile内部可以调用到。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span> </span><br><span class="line">  <span class="comment"># 相当于全局变量</span></span><br><span class="line">  build_config = <span class="string">"debug"</span></span><br><span class="line"></span><br><span class="line">  before_all <span class="keyword">do</span> <span class="params">|lane, options|</span></span><br><span class="line">    <span class="comment"># 调用私有lane deal_param 并将options传递过去</span></span><br><span class="line">    deal_param options</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  lane <span class="symbol">:ent</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 私有lane，比如把传入的build参数进行一下处理</span></span><br><span class="line">  private_lane <span class="symbol">:deal_param</span> <span class="keyword">do</span> <span class="params">|options|</span></span><br><span class="line">    build_config = build_config ? build_config : <span class="string">"debug"</span></span><br><span class="line">    build_config.capitalize!</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h2 id="自建Action"><a href="#自建Action" class="headerlink" title="自建Action"></a><a href="https://docs.fastlane.tools/plugins/create-plugin/" target="_blank" rel="noopener">自建Action</a></h2><p>执行<code>fastlane new_action</code>，命令行提示输入自建的action名称，输入后fastlane会帮助生成一个action编写的模版ruby文件，在模版中编写自己的Action逻辑，具体因为暂时没有写过，请查看官方的文档。</p>
-<h2 id="与jenkins搭配使用"><a href="#与jenkins搭配使用" class="headerlink" title="与jenkins搭配使用"></a>与jenkins搭配使用</h2><p>因为fastlane可以在命令行中使用，所以只要在jenkins中，构建的一些环节中使用<code>Excute Sell</code>方式，然后输入fastlane相关的命令即可了。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2018-01-23-fastlane-10.png" alt="fastlane-10"></p>
+<h2 id="与jenkins搭配使用"><a href="#与jenkins搭配使用" class="headerlink" title="与jenkins搭配使用"></a>与jenkins搭配使用</h2><p>因为fastlane可以在命令行中使用，所以只要在jenkins中，构建的一些环节中使用<code>Excute Sell</code>方式，然后输入fastlane相关的命令即可了。<br><img src="/media/26-fastlane10.png" alt="fastlane-10"></p>
 <h1 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h1><h2 id="两步验证"><a href="#两步验证" class="headerlink" title="两步验证"></a>两步验证</h2><p>需要在打包机上进行一些配置操作，<strong>session有过期时间，打包失败的时候记得去打包机更新一下</strong></p>
 <ol>
 <li>访问 <a href="https://appleid.apple.com/account/manage" target="_blank" rel="noopener">AppleId管理站</a></li>
@@ -587,8 +587,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/28-xcode10-and-ios12/" rel="prev" title="Xcode10和iOS12适配（持续更新）">
-                Xcode10和iOS12适配（持续更新） <i class="fa fa-chevron-right"></i>
+              <a href="/27-auto-generate-simulator-app/" rel="prev" title="生成用于iOS模拟器安装的包">
+                生成用于iOS模拟器安装的包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,7 +669,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
