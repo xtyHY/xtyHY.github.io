@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一些git的常规使用">
+<meta name="keywords" content="git,iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS协同开发 – git的使用三 - 常规使用 checkout、commit、pull、push、merge">
+<meta property="og:url" content="http://www.devhy.com/03-git-team-use-3/index.html">
+<meta property="og:site_name" content="寰宇小仓库">
+<meta property="og:description" content="一些git的常规使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-00.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-01.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-02.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-03.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-04.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-05.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-06.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-07.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-08.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-08-2.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-09.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-10.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-11.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-12.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-13.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-14.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-15.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-16.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-17.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-18.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-19.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-20.png">
+<meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-21.png">
+<meta property="og:updated_time" content="2016-08-09T05:03:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS协同开发 – git的使用三 - 常规使用 checkout、commit、pull、push、merge">
+<meta name="twitter:description" content="一些git的常规使用">
+<meta name="twitter:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-00.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="寰宇小仓库" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://www.devhy.com/03-git-team-use-3/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS协同开发 – git的使用三 - 常规使用 checkout、commit、pull、push、merge | 寰宇小仓库</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">寰宇小仓库</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coding Life</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/03-git-team-use-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寰宇小仓库">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS协同开发 – git的使用三 - 常规使用 checkout、commit、pull、push、merge
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-28 19:47:38" itemprop="dateCreated datePublished" datetime="2015-03-28T19:47:38+08:00">2015-03-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-08-09 13:03:36" itemprop="dateModified" datetime="2016-08-09T13:03:36+08:00">2016-08-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS开发/" itemprop="url" rel="index"><span itemprop="name">iOS开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/03-git-team-use-3/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="03-git-team-use-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">一些git的常规使用</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="常规使用流程"><a href="#常规使用流程" class="headerlink" title="常规使用流程"></a>常规使用流程</h2><ol>
+<li>加入项目组后，获得项目的git仓地址后</li>
+<li>使用checkout进行检出，选择自己的branch（分支）或者检出master分支后new branch（创建新分支）并切换到自己的分支</li>
+<li>然后编写代码，当日工作完成后进行commit（预提交），同时需要注释本次提交的简介（mark）。</li>
+<li>如果本分支有两人以上同时开发，在push（提交到远程git仓）之前需要先pull更新</li>
+<li>在pull之后通常有可能出现冲突，联系相关开发组成员后确定冲突的选择后，再运行一下代码看是否有问题</li>
+<li>确认无误后进行push提交</li>
+<li>开发一段时间后，大家需要提交到master分支（主分支），使用merge into主分支，注意冲突处理。</li>
+<li>如果master分支有新内容，可以使用merge from主分支来更新自己的分支</li>
+</ol>
+<h2 id="checkout用途"><a href="#checkout用途" class="headerlink" title="checkout用途"></a>checkout用途</h2><p>主要用在首次获取项目和本地项目工程整体丢失的时候，直接获取完整的项目的某个分支源码。</p>
+<p>比如：我新加入这个项目组，我就需要使用xcode的checkout进行获取</p>
+<ol>
+<li><p>xcode的工具栏 - source control - checkout**<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-00.png" alt="03-ios-group-git-00"></p>
+</li>
+<li><p>选择获取源<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-01.png" alt="03-ios-group-git-01"></p>
+</li>
+<li><p>选择分支<br> 如果没有多个分支则只自动获取master分支<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-02.png" alt="03-ios-group-git-02"></p>
+</li>
+<li><p>检出项目保存位置<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-03.png" alt="03-ios-group-git-03"></p>
+</li>
+</ol>
+<p>这样一来就获取了一个master分支的项目</p>
+<h2 id="commit预提交"><a href="#commit预提交" class="headerlink" title="commit预提交"></a>commit预提交</h2><p>使用commit将变更的记录标注为需要提交，并设置要提交的代码说明</p>
+<p>如：xcode工具条 - source controller - commit</p>
+<p>具体说明见图片<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-04.png" alt="03-ios-group-git-04"></p>
+<h2 id="pull更新"><a href="#pull更新" class="headerlink" title="pull更新"></a>pull更新</h2><p>如果多人同时在同一个分支开发的话，在你commit之后，push之前，有某个开发者commit并push了他的代码，那么服务器的版本就比你本地匹配的服务器版本更加新了，那么直接push就会出现这个问题<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-05.png" alt="03-ios-group-git-05"></p>
+<p>此时我们就需要先pull进行更新了</p>
+<p>source control - pull<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-06.png" alt="03-ios-group-git-06"></p>
+<p><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-07.png" alt="03-ios-group-git-07"></p>
+<p>在pull更新后发现Arom和我同时修改了其中的几行，于是出现了歧义警告（红色），需要我来处理。<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-08.png" alt="03-ios-group-git-08"></p>
+<p><strong>歧义处理有四种方式:</strong></p>
+<ol>
+<li><p>将服务器（右侧）上的版本的内容插入到我的本地版本（左侧）的下方</p>
+<p> 如图：<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-08-2.png" alt="03-ios-group-git-08"></p>
+</li>
+<li><p>以我的版本为准，服务器版本歧义区域无效</p>
+<p> 如图：<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-09.png" alt="03-ios-group-git-09"></p>
+</li>
+<li><p>以服务器版本为准，我的版本歧义区域无效</p>
+<p> 如图：<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-10.png" alt="03-ios-group-git-10"></p>
+</li>
+<li><p>将服务器（右侧）上的版本的内容插入到我的本地版本（左侧）的上方**</p>
+<p> 如图：<br> <img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-11.png" alt="03-ios-group-git-11"></p>
+</li>
+</ol>
+<p>一般来说，如果确认服务器的版本已经无效，则选择以本地版本为准（按钮2）</p>
+<p>如果两边版本都有部分或全部有用，则可以选择1或4，然后pull完成后再删除没用的部分在次commit，在此push即可</p>
+<p><strong>时刻记住：本地版本是即将要提交到服务器的版本，所有的最终改动在本地完成后，push提交到服务器，就变成了服务器版本</strong></p>
+<h2 id="push提交"><a href="#push提交" class="headerlink" title="push提交"></a>push提交</h2><p>在处理完上面歧义后，我和Arom沟通后删除了部分内容，再次commit预提交。然后pull检查没有更新了，再push提交到远程服务器git仓</p>
+<ol>
+<li><p>source controll - push<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-12.png" alt="03-ios-group-git-12"></p>
+</li>
+<li><p>注意提交的分支<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-13.png" alt="03-ios-group-git-13"></p>
+</li>
+<li><p>提交成功<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-14.png" alt="03-ios-group-git-14"></p>
+</li>
+</ol>
+<h2 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h2><p>在xcode中merge合并分为merge into 和 merge from<br>merge into：将当前分支合并到另一个分支中<br>merge from：将另一个分支合并到当前分支中<br>merge 在 source control - 分支名称 - merge into/from里 如图<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-15.png" alt="03-ios-group-git-15"></p>
+<h3 id="merge-into"><a href="#merge-into" class="headerlink" title="merge into"></a>merge into</h3><p>比如：我们的代码在devhy分支完成的差不多了，如果需要我们来提交，这时就需要使用merge into<br>目前我们可选的只有主分支（主分支之前一直没被更新过）<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-16.png" alt="03-ios-group-git-16"></p>
+<p>这时又发现了冲突歧义，马上联系相关开发者进行处理<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-17.png" alt="03-ios-group-git-17"></p>
+<p>merge完成，发现我们跳到master分支了，因为我们一切操作是在本地的git仓库操作的，发现我们刚才的操作给主分支的这个文件判断出是有修改的，果断着手commit - pull - push来更新远程git仓服务器的master分支<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-18.png" alt="03-ios-group-git-18"><br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-19.png" alt="03-ios-group-git-19"></p>
+<p>这么一来主分支完成了更新，那么就得切回自己的分支继续开发工作了，切换分支（switch to branch）也和merge into一样source control里</p>
+<p>因为不确定服务器端的devhy分支是不是最新的，所以我们还是切换成本地的devhy分支<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-20.png" alt="03-ios-group-git-20"></p>
+<p><strong>注：local branches表示本地的git仓的分支，origin表示是远程git仓服务器的分支列表</strong></p>
+<h3 id="merge-from"><a href="#merge-from" class="headerlink" title="merge from"></a>merge from</h3><p>一般merge from是在master分支更新了，保持你的分支能够使用到master分支的新特新来使用的<br>如：项目管理者在master分支更新了api接口信息或者宏定义之类的，你需要使用到这些新的功能，则需要在你的分支里使用merge from</p>
+<p>具体用法和merge into差不多，比如：我们的主分支删除了一些打印，我们得更新，一般系统会自动判断新增右边服务器上的内容<br><img src="http://oa73hsfk5.bkt.clouddn.com/2016-07-13-03-ios-group-git-21.png" alt="03-ios-group-git-21"></p>
+<p>然后点击merge即可</p>
+<p><strong>谨记提交三部曲：commit-pull-push<br>pull完成有歧义要处理歧义，处理完成后再走一遍三部曲，直到push成功</strong></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/02-git-team-use-2/" rel="next" title="iOS协同开发 - git的使用二 - 使用开源中国代码托管 - 获取远程git仓代码、创建多分支">
+                <i class="fa fa-chevron-left"></i> iOS协同开发 - git的使用二 - 使用开源中国代码托管 - 获取远程git仓代码、创建多分支
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/04-git-team-use-4/" rel="prev" title="iOS协同开发 – git的使用四 - git常用终端指令">
+                iOS协同开发 – git的使用四 - git常用终端指令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">寰宇</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xtyHY" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.aemiot.com/" title="Aem" target="_blank">Aem</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yitar.me/" title="Yitar" target="_blank">Yitar</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/cedric_jc/" title="Cedric JC" target="_blank">Cedric JC</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/u011427518/" title="瑾宇" target="_blank">瑾宇</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常规使用流程"><span class="nav-number">1.</span> <span class="nav-text">常规使用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout用途"><span class="nav-number">2.</span> <span class="nav-text">checkout用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#commit预提交"><span class="nav-number">3.</span> <span class="nav-text">commit预提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pull更新"><span class="nav-number">4.</span> <span class="nav-text">pull更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push提交"><span class="nav-number">5.</span> <span class="nav-text">push提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#merge合并"><span class="nav-number">6.</span> <span class="nav-text">merge合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-into"><span class="nav-number">6.1.</span> <span class="nav-text">merge into</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-from"><span class="nav-number">6.2.</span> <span class="nav-text">merge from</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寰宇</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1259942096&web_id=1259942096" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=2137159" async = "async" ></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://devhy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://www.devhy.com/03-git-team-use-3/';
+        this.page.identifier = '03-git-team-use-3/';
+        this.page.title = 'iOS协同开发 – git的使用三 - 常规使用 checkout、commit、pull、push、merge';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://devhy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
