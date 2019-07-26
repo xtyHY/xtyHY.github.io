@@ -154,19 +154,19 @@
 <meta property="og:site_name" content="寰宇小仓库">
 <meta property="og:description" content="之前把SiriKit的文档啃完了，然后找了很久也没找到完成度比较高的Demo。之前手头上比较忙就先搁置了，最近有时间可以继续了。索性自己摸石头过河，一步步试着实现。要说SiriKit当然要先了解App Extension了，本篇先介绍一下App Extension。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-01.png">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-02.png">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-03.png">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-01.png">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-02.png">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-03.png">
 <meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-04.png">
 <meta property="og:image" content="http://oa73hsfk5.bkt.clouddn.com/2016-12-16-20-SiriKit-Practice-05.png">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-06.png">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-07.png">
-<meta property="og:image" content="http://www.devhy.com/media/21-SiriKit-Practice-08.png">
-<meta property="og:updated_time" content="2018-11-15T06:51:14.280Z">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-06.png">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-07.png">
+<meta property="og:image" content="http://devhy.com/media/21-SiriKit-Practice-08.png">
+<meta property="og:updated_time" content="2018-11-15T07:21:50.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SiriKit实践 - AppExtension介绍">
 <meta name="twitter:description" content="之前把SiriKit的文档啃完了，然后找了很久也没找到完成度比较高的Demo。之前手头上比较忙就先搁置了，最近有时间可以继续了。索性自己摸石头过河，一步步试着实现。要说SiriKit当然要先了解App Extension了，本篇先介绍一下App Extension。">
-<meta name="twitter:image" content="http://www.devhy.com/media/21-SiriKit-Practice-01.png">
+<meta name="twitter:image" content="http://devhy.com/media/21-SiriKit-Practice-01.png">
 
 
 
@@ -417,7 +417,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-15 14:51:14" itemprop="dateModified" datetime="2018-11-15T14:51:14+08:00">2018-11-15</time>
+                <time title="修改时间：2018-11-15 15:21:50" itemprop="dateModified" datetime="2018-11-15T15:21:50+08:00">2018-11-15</time>
               
             
           </span>
@@ -483,12 +483,12 @@
         <p>之前把SiriKit的文档啃完了，然后找了很久也没找到完成度比较高的Demo。之前手头上比较忙就先搁置了，最近有时间可以继续了。索性自己摸石头过河，一步步试着实现。<br>要说SiriKit当然要先了解App Extension了，本篇先介绍一下App Extension。</p>
 <a id="more"></a>
 <h1 id="App-Extension"><a href="#App-Extension" class="headerlink" title="App Extension"></a>App Extension</h1><p><code>App Extension</code>顾名思义其是对App的扩展，自iOS8开始新增的特性。之前常见有<code>Today(Widget)</code>、<code>Custom Keyboard</code>、<code>Share</code>，iOS9和10之后陆续又增加了不少，如最近比较热的<code>iMessage</code>、<code>Sticker</code>、<code>Content Blocker</code>、<code>Call Directory</code> 以及本次要分享的<code>SiriKit</code>。</p>
-<p><img src="/media/21-SiriKit-Practice-01.png" alt="20-SiriKit-Practice-01"></p>
+<p><img src="http://devhy.com/media/21-SiriKit-Practice-01.png" alt="20-SiriKit-Practice-01"></p>
 <h2 id="特点与区别"><a href="#特点与区别" class="headerlink" title="特点与区别"></a>特点与区别</h2><h3 id="App-Extension-1"><a href="#App-Extension-1" class="headerlink" title="App Extension"></a>App Extension</h3><p><code>App Extension</code>在工程中以一个target存在，有自己的<code>info.plist</code>，有自己的配置项，也有自己的<code>bundle id</code>（如：主App的为<code>com.company.xAppName</code>，那么<code>AppExtension</code>通常为<code>com.company.xAppName.xExtensionName</code>）。它的bundle也是独立的，bundle后缀为<code>.appex</code>。</p>
 <h3 id="Containing-App"><a href="#Containing-App" class="headerlink" title="Containing App"></a>Containing App</h3><p>我们的主App就是但是<code>Containing App</code>了，实际上<code>App Extension</code>并不是一个独立的App，它不能独立安装与卸载，他是随着主App的安装而安装、卸载而卸载的。而且提交AppStore的时候主App必须要实现一些功能。</p>
 <h3 id="Host-App"><a href="#Host-App" class="headerlink" title="Host App"></a>Host App</h3><p>调用Extions的App就是<code>Host App</code>，比如<code>Intent Extension</code>的<code>Host App</code>是<code>Siri</code>。</p>
-<p><code>App Extension</code>是与<code>Host App</code>进行通讯，<code>App Extension</code>与<code>Containing App</code>通过<code>openUrl:</code>进行通讯，而<code>Host App</code>与<code>Containing App</code>之间就没有任何关系了，大致关系如下图:<br><img src="/media/21-SiriKit-Practice-02.png" alt=""></p>
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>它的生命周期与主App也不同，<code>App Extension</code>是随着用户触发了而创建和启动，用户取消操作或者离开后一段时间他会被系统自动杀死。<br><img src="/media/21-SiriKit-Practice-03.png" alt="AppExtension生命周期"></p>
+<p><code>App Extension</code>是与<code>Host App</code>进行通讯，<code>App Extension</code>与<code>Containing App</code>通过<code>openUrl:</code>进行通讯，而<code>Host App</code>与<code>Containing App</code>之间就没有任何关系了，大致关系如下图:<br><img src="http://devhy.com/media/21-SiriKit-Practice-02.png" alt=""></p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>它的生命周期与主App也不同，<code>App Extension</code>是随着用户触发了而创建和启动，用户取消操作或者离开后一段时间他会被系统自动杀死。<br><img src="http://devhy.com/media/21-SiriKit-Practice-03.png" alt="AppExtension生命周期"></p>
 <h2 id="数据与代码共享"><a href="#数据与代码共享" class="headerlink" title="数据与代码共享"></a>数据与代码共享</h2><p>毕竟<code>App Extension</code>与<code>Containing App</code>并不是一体的，所以数据和代码上的共享是有些需要注意的。</p>
 <h3 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h3><h4 id="开启App-Group"><a href="#开启App-Group" class="headerlink" title="开启App Group"></a>开启App Group</h4><p>首先你需要给需要数据共享的target开启App Group并设置Group Id（只有开发者账号可以进行），<strong>注意共享数据的target的group id要勾选一样的。</strong></p>
 <p>如下图，我的主App target和Intent Extension的Target开启并设置了GroupId（没有group id需要先点+号增加一个）</p>
@@ -502,9 +502,9 @@
 <h4 id="主App与Extension各种路径"><a href="#主App与Extension各种路径" class="headerlink" title="主App与Extension各种路径"></a>主App与Extension各种路径</h4><p>在主App和Extension中分别打印groupPath、bundlePath和sandyPath，可以发现，它们的groupPath是一样的，bunldePath和sandyPath都不同</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//---主App打印</span></span><br><span class="line"><span class="string">groupPath:</span> <span class="regexp">/private/</span>var<span class="regexp">/mobile/</span>Containers<span class="regexp">/Shared/</span>AppGroup/<span class="number">4616</span>FF64<span class="number">-1879</span><span class="number">-4</span>A12-BCC4-C2E7F82C612A </span><br><span class="line"></span><br><span class="line"><span class="string">bundlePath:</span> <span class="regexp">/var/</span>containers<span class="regexp">/Bundle/</span>Application<span class="regexp">/ED47E5E2-F867-4179-AF99-0609F98CA4DA/</span>SiriKitTest.app </span><br><span class="line"> </span><br><span class="line"><span class="string">sandyPath:</span> <span class="regexp">/var/</span>mobile<span class="regexp">/Containers/</span>Data<span class="regexp">/Application/</span>A79D26BD-B003<span class="number">-4</span>BDB-B3C8<span class="number">-3</span>B73FA7AB08B</span><br><span class="line"></span><br><span class="line"><span class="comment">//---Extension打印</span></span><br><span class="line"><span class="string">groupPath:</span> <span class="regexp">/private/</span>var<span class="regexp">/mobile/</span>Containers<span class="regexp">/Shared/</span>AppGroup/<span class="number">4616</span>FF64<span class="number">-1879</span><span class="number">-4</span>A12-BCC4-C2E7F82C612A </span><br><span class="line"></span><br><span class="line"><span class="string">bundlePath:</span> <span class="regexp">/private/</span>var<span class="regexp">/containers/</span>Bundle<span class="regexp">/Application/</span><span class="number">03</span>D71C80-B9C0<span class="number">-4480</span><span class="number">-82</span>A7<span class="number">-044</span>D129614F3<span class="regexp">/SiriKitTest.app/</span>PlugIns/SendMessageIntentUI.appex </span><br><span class="line"></span><br><span class="line"><span class="string">sandyPath:</span> <span class="regexp">/var/</span>mobile<span class="regexp">/Containers/</span>Data<span class="regexp">/PluginKitPlugin/</span>E241732D<span class="number">-5383</span><span class="number">-416</span>C-A411<span class="number">-222</span>B8C780E2B</span><br></pre></td></tr></table></figure>
 <h3 id="代码和图片资源共享"><a href="#代码和图片资源共享" class="headerlink" title="代码和图片资源共享"></a>代码和图片资源共享</h3><h4 id="使用Framework"><a href="#使用Framework" class="headerlink" title="使用Framework"></a>使用Framework</h4><p>将两边都会用到的代码，打成Framework，然后引入</p>
-<h4 id="使用CocoaPods"><a href="#使用CocoaPods" class="headerlink" title="使用CocoaPods"></a>使用CocoaPods</h4><p>制作私有CocoaPods库，进行引入。Podfile注意给Intent或者IntentUI的target也加上需要的。如：<br><img src="/media/21-SiriKit-Practice-06.png" alt="20-SiriKit-Practices-04-1"></p>
+<h4 id="使用CocoaPods"><a href="#使用CocoaPods" class="headerlink" title="使用CocoaPods"></a>使用CocoaPods</h4><p>制作私有CocoaPods库，进行引入。Podfile注意给Intent或者IntentUI的target也加上需要的。如：<br><img src="http://devhy.com/media/21-SiriKit-Practice-06.png" alt="20-SiriKit-Practices-04-1"></p>
 <h4 id="勾选target-membership"><a href="#勾选target-membership" class="headerlink" title="勾选target membership"></a>勾选target membership</h4><p>对已有的一些要共用的类在右侧勾选，新建类的时候也考虑是否要勾选。</p>
-<p><img src="/media/21-SiriKit-Practice-07.png" alt="20-SiriKit-Practice-05"><br><img src="/media/21-SiriKit-Practice-08.png" alt="20-SiriKit-Practice-06"></p>
+<p><img src="http://devhy.com/media/21-SiriKit-Practice-07.png" alt="20-SiriKit-Practice-05"><br><img src="http://devhy.com/media/21-SiriKit-Practice-08.png" alt="20-SiriKit-Practice-06"></p>
 <h3 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h3><ol>
 <li><p>报错UserDefaults无法读写</p>
  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handle status: 02016-12-15 15:04:17.414706 SendMessageIntentUI[13492:1016495] [User Defaults] 	Failed <span class="keyword">to</span> read values <span class="keyword">in</span> </span><br><span class="line">CFPrefsPlistSource&lt;0x1700e9a00&gt; (Domain: group.com.maihaoche.SiriKitTest,</span><br><span class="line">User: kCFPreferencesAnyUser, ByHost: <span class="literal">Yes</span>, Container: (<span class="literal">null</span>)):</span><br><span class="line">Using kCFPreferencesAnyUser with a container is only allowed <span class="keyword">for</span><span class="built_in"> System </span>Containers, detaching <span class="keyword">from</span> cfprefsd</span><br></pre></td></tr></table></figure>
@@ -651,7 +651,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -733,7 +733,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -831,7 +835,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

@@ -147,39 +147,39 @@
 
 
   <meta name="description" content="进入公司工作了一段时间，项目中各种工具类、小控件非常多，暂时公司也只有一个项目。但是如果要新起一个App项目，那么可能又要把这些类库给拖到新项目里。这么一来两个项目之间的类库、控件可能就不同步，来回复制也不合适。想着CocoaPods是类库管理工具，我们能不能将公司内部的类库和控件进行私有存储呢？带着这个疑问进行了一些搜索，最终发现CocoaPods是能支持私有库构建的。本文记录了CocoaPod">
-<meta name="keywords" content="CocoaPods,iOS,PodSpec,私有库">
+<meta name="keywords" content="iOS,CocoaPods,PodSpec,私有库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS - CocoaPods私有库搭建步骤介绍">
 <meta property="og:url" content="http://www.devhy.com/10-private-cocoapods-spec-steps/index.html">
 <meta property="og:site_name" content="寰宇小仓库">
 <meta property="og:description" content="进入公司工作了一段时间，项目中各种工具类、小控件非常多，暂时公司也只有一个项目。但是如果要新起一个App项目，那么可能又要把这些类库给拖到新项目里。这么一来两个项目之间的类库、控件可能就不同步，来回复制也不合适。想着CocoaPods是类库管理工具，我们能不能将公司内部的类库和控件进行私有存储呢？带着这个疑问进行了一些搜索，最终发现CocoaPods是能支持私有库构建的。本文记录了CocoaPod">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-01.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-02.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-03.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-04.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-05.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-07.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-09.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-11.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-12.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-13.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-14.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-15.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-16.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-17.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-18.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-20.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-21.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-22.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-23.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-24.png">
-<meta property="og:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-25.png">
-<meta property="og:updated_time" content="2018-11-15T06:37:12.960Z">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-01.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-02.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-03.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-04.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-05.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-07.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-09.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-11.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-12.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-13.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-14.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-15.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-16.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-17.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-18.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-20.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-21.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-22.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-23.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-24.png">
+<meta property="og:image" content="http://devhy.com/media/10-private-cocoapods-spec-25.png">
+<meta property="og:updated_time" content="2018-11-15T07:21:51.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS - CocoaPods私有库搭建步骤介绍">
 <meta name="twitter:description" content="进入公司工作了一段时间，项目中各种工具类、小控件非常多，暂时公司也只有一个项目。但是如果要新起一个App项目，那么可能又要把这些类库给拖到新项目里。这么一来两个项目之间的类库、控件可能就不同步，来回复制也不合适。想着CocoaPods是类库管理工具，我们能不能将公司内部的类库和控件进行私有存储呢？带着这个疑问进行了一些搜索，最终发现CocoaPods是能支持私有库构建的。本文记录了CocoaPod">
-<meta name="twitter:image" content="http://www.devhy.com/media/10-private-cocoapods-spec-01.png">
+<meta name="twitter:image" content="http://devhy.com/media/10-private-cocoapods-spec-01.png">
 
 
 
@@ -430,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-15 14:37:12" itemprop="dateModified" datetime="2018-11-15T14:37:12+08:00">2018-11-15</time>
+                <time title="修改时间：2018-11-15 15:21:51" itemprop="dateModified" datetime="2018-11-15T15:21:51+08:00">2018-11-15</time>
               
             
           </span>
@@ -502,7 +502,7 @@
 </ol>
 <h2 id="Spec-Repo"><a href="#Spec-Repo" class="headerlink" title="Spec Repo"></a>Spec Repo</h2><h3 id="什么是Spec-Repo"><a href="#什么是Spec-Repo" class="headerlink" title="什么是Spec Repo"></a>什么是Spec Repo</h3><p>Spec Repo是一个包含了各种支持CocoaPods导入的类库的一个仓库，<a href="https://github.com/CocoaPods/Specs" target="_blank" rel="noopener">官方的Spec Repo</a>是一个在github上的git repo，在我们安装CocoaPods时进行 <code>pod setup</code> 步骤时会将其clone到本地目录 <code>~/.cocoapods/repos/master</code> 下。</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目录结构为</span><br><span class="line"><span class="string">|-- Specs</span></span><br><span class="line">    <span class="string">|-- [Spec Name]</span></span><br><span class="line">        <span class="string">|-- [Version]</span></span><br><span class="line">            <span class="string">|-- [Spec Name].podspec或[Spec Name].podspec.json</span></span><br></pre></td></tr></table></figure>
-<p><img src="/media/10-private-cocoapods-spec-01.png" alt="00"><br><img src="/media/10-private-cocoapods-spec-02.png" alt="01"></p>
+<p><img src="http://devhy.com/media/10-private-cocoapods-spec-01.png" alt="00"><br><img src="http://devhy.com/media/10-private-cocoapods-spec-02.png" alt="01"></p>
 <h3 id="卡在Updating-local-specs-repositories原因"><a href="#卡在Updating-local-specs-repositories原因" class="headerlink" title="卡在Updating local specs repositories原因"></a>卡在Updating local specs repositories原因</h3><ul>
 <li>CocoaPods版本更新1.0前<br>  使用<code>pod install</code>会先更新Spec Repo，由于CocoaPods的广泛使用导致同时请求数超过了github的限制，最终长时间卡在<code>Updating local specs repositories</code>。</li>
 <li>CocoaPods版本更新1.0后<br>  仅使用<code>pod update</code>会触发更新Local Spec Repo，或者手动执行<code>pod repo update</code>指令更新Local Spec Repo。</li>
@@ -515,28 +515,28 @@
 </ol>
 <h3 id="未提交git远程仓库的类库"><a href="#未提交git远程仓库的类库" class="headerlink" title="未提交git远程仓库的类库"></a>未提交git远程仓库的类库</h3><ol>
 <li><p>给编写完的类库项目创建对应的git repo，提交项目，并打上tag版本号，建议参考<a href="http://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本号</a>进行制定</p>
-<p> （1）创建一个MyUtils的git repo 并拉到本地<br> <img src="/media/10-private-cocoapods-spec-03.png" alt="02-1-01"><br> <img src="/media/10-private-cocoapods-spec-04.png" alt="02-1-02"></p>
-<p> （2）将已有类库复制到本地git repo文件夹中<br> <img src="/media/10-private-cocoapods-spec-05.png" alt="02-1-03"></p>
-<p> （3）提交后打上tag标签，如0.1<br> <img src="/media/10-private-cocoapods-spec-07.png" alt="02-1-05"></p>
+<p> （1）创建一个MyUtils的git repo 并拉到本地<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-03.png" alt="02-1-01"><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-04.png" alt="02-1-02"></p>
+<p> （2）将已有类库复制到本地git repo文件夹中<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-05.png" alt="02-1-03"></p>
+<p> （3）提交后打上tag标签，如0.1<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-07.png" alt="02-1-05"></p>
 </li>
 <li><p>在项目目录根路径创建编写[类库项目名称].podspec文件<br> cd到项目目录，然后执行 <code>pod spec create [类库项目名称]</code></p>
 </li>
-<li><p>编写podspec文件<br> 图为默认创建的podspec文件,编写格式可参照该文件<a href="https://github.com/xtyHY/MyUtils/blob/master/MyUtils.podspec" target="_blank" rel="noopener">MyUtils.podspec</a><br> <img src="/media/10-private-cocoapods-spec-09.png" alt="02-1-07"></p>
+<li><p>编写podspec文件<br> 图为默认创建的podspec文件,编写格式可参照该文件<a href="https://github.com/xtyHY/MyUtils/blob/master/MyUtils.podspec" target="_blank" rel="noopener">MyUtils.podspec</a><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-09.png" alt="02-1-07"></p>
 </li>
 <li><p>检测podspec文件是否可用</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod lib lint --allow-warnings</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<pre><code>![02-1-08](/media/10-private-cocoapods-spec-10.png)
+<pre><code>![02-1-08](http://devhy.com/media/10-private-cocoapods-spec-10.png)
 
 注：首先检查podspec文件信息是否正确，其次根据podspec里填写的信息将类库clone到一个临时目录进行编译。如果podspec文件信息错误，或则编译出现警告乃至错误都会检测失败。为了避免因为编译警告而检测失败，可在指令后面添加 `--allow-warnings参数`
 </code></pre><ol start="5">
-<li>将podspec文件提交到git repo<br> <img src="/media/10-private-cocoapods-spec-11.png" alt="02-1-09"></li>
+<li>将podspec文件提交到git repo<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-11.png" alt="02-1-09"></li>
 </ol>
 <h3 id="已提交git远程仓库的类库"><a href="#已提交git远程仓库的类库" class="headerlink" title="已提交git远程仓库的类库"></a>已提交git远程仓库的类库</h3><ol>
-<li><p>执行 <code>pod spec create [类库项目git repo地址]</code><br> <img src="/media/10-private-cocoapods-spec-12.png" alt="02-2-01"></p>
+<li><p>执行 <code>pod spec create [类库项目git repo地址]</code><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-12.png" alt="02-2-01"></p>
 </li>
-<li><p>修改podspec文件<br> 图为默认创建的podspec文件<br> <img src="/media/10-private-cocoapods-spec-13.png" alt="02-2-02"></p>
+<li><p>修改podspec文件<br> 图为默认创建的podspec文件<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-13.png" alt="02-2-02"></p>
 </li>
 <li><p>检测podspec文件是否可用</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod lib lint --allow-warnings</span><br></pre></td></tr></table></figure>
@@ -546,13 +546,13 @@
 </ol>
 <h3 id="用CocoaPods官方模版创建类库"><a href="#用CocoaPods官方模版创建类库" class="headerlink" title="用CocoaPods官方模版创建类库"></a>用CocoaPods官方模版创建类库</h3><ol>
 <li><p>打开终端，执行 <code>pod lib create [类库项目名称]</code>，根据提示进行配置类库使用的语言，是否需要Demo程序，使用何种测试框架，是否需要界面测试，类名前缀</p>
-<p> （1）配置过程<br> <img src="/media/10-private-cocoapods-spec-14.png" alt="02-3-01"><br> <img src="/media/10-private-cocoapods-spec-15.png" alt="02-3-02"></p>
-<p> （2）生成的文件目录结构<br> <img src="/media/10-private-cocoapods-spec-16.png" alt="02-3-03"></p>
+<p> （1）配置过程<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-14.png" alt="02-3-01"><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-15.png" alt="02-3-02"></p>
+<p> （2）生成的文件目录结构<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-16.png" alt="02-3-03"></p>
 </li>
 <li><p>在github或gitlab上创建该<code>[类库项目名称]</code>的git repo</p>
 </li>
 <li><p>修改生成的<code>[类库项目名称].podspec</code>文件</p>
-<p> 生成的podspec配置文件<br> <img src="/media/10-private-cocoapods-spec-17.png" alt="02-3-04"></p>
+<p> 生成的podspec配置文件<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-17.png" alt="02-3-04"></p>
 </li>
 <li><p>编写这个类库项目</p>
 </li>
@@ -565,7 +565,7 @@
 </li>
 </ol>
 <h2 id="搭建私有Spec-Repo"><a href="#搭建私有Spec-Repo" class="headerlink" title="搭建私有Spec Repo"></a>搭建私有Spec Repo</h2><ol>
-<li>在github或gitlab创建一个git repo<br> 比如，取名为 mySpecs<br> 对应的git地址为 <code>https://github.com/xtyHY/mySpecs.git</code><br> <img src="/media/10-private-cocoapods-spec-18.png" alt="11"></li>
+<li>在github或gitlab创建一个git repo<br> 比如，取名为 mySpecs<br> 对应的git地址为 <code>https://github.com/xtyHY/mySpecs.git</code><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-18.png" alt="11"></li>
 </ol>
 <ol start="2">
 <li><p>关联到本地的Spec Repo<br> (1)添加Spec Repo到本地</p>
@@ -579,8 +579,8 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo push [本地Spec Repo名称] [podspec文件路径] --allow-warnings</span><br></pre></td></tr></table></figure>
 <p> 如：本地Spec Repo名称为<code>mySpecs</code>，podspec文件路径为<code>~/Desktop/MyUtils.podspec</code></p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo push mySpecs ~/Desktop/MyUtils.podspec --allow-warnings</span><br></pre></td></tr></table></figure>
-<p> <img src="/media/10-private-cocoapods-spec-20.png" alt="13"><br> <em>注：在添加在私有Spec Repo时也会检测podspec信息，增减–allow-warnings 参数的原因与之前主动检测podspec是否可用一样</em></p>
-<p> 提交成功即可在本地和spec repo的remote端看到<br> <img src="/media/10-private-cocoapods-spec-21.png" alt="14"><br> <img src="/media/10-private-cocoapods-spec-22.png" alt="15"></p>
+<p> <img src="http://devhy.com/media/10-private-cocoapods-spec-20.png" alt="13"><br> <em>注：在添加在私有Spec Repo时也会检测podspec信息，增减–allow-warnings 参数的原因与之前主动检测podspec是否可用一样</em></p>
+<p> 提交成功即可在本地和spec repo的remote端看到<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-21.png" alt="14"><br> <img src="http://devhy.com/media/10-private-cocoapods-spec-22.png" alt="15"></p>
 </li>
 </ol>
 <h2 id="使用私有Pod-Spec的类库"><a href="#使用私有Pod-Spec的类库" class="headerlink" title="使用私有Pod Spec的类库"></a>使用私有Pod Spec的类库</h2><ol>
@@ -590,9 +590,9 @@
 </li>
 <li><p>通过通常的导入支持CocoaPods类库的方式即可</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">'[类库项目名称]'</span>, <span class="string">'~&gt; [版本号]'</span></span><br></pre></td></tr></table></figure>
-<p> 如图：<br> 编写podfile文件<br> <img src="/media/10-private-cocoapods-spec-23.png" alt="17"></p>
-<p> 执行pod install安装<br> <img src="/media/10-private-cocoapods-spec-24.png" alt="18"></p>
-<p> 导入成功效果<br> <img src="/media/10-private-cocoapods-spec-25.png" alt="19"></p>
+<p> 如图：<br> 编写podfile文件<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-23.png" alt="17"></p>
+<p> 执行pod install安装<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-24.png" alt="18"></p>
+<p> 导入成功效果<br> <img src="http://devhy.com/media/10-private-cocoapods-spec-25.png" alt="19"></p>
 </li>
 </ol>
 <h2 id="其他一些CocoaPods-操作repo的指令"><a href="#其他一些CocoaPods-操作repo的指令" class="headerlink" title="其他一些CocoaPods 操作repo的指令"></a>其他一些CocoaPods 操作repo的指令</h2><ol>
@@ -630,9 +630,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
-          
             <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
           
             <a href="/tags/PodSpec/" rel="tag"># PodSpec</a>
           
@@ -741,7 +741,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -823,7 +823,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -921,7 +925,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
