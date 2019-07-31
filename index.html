@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 15:16:00" itemprop="dateModified" datetime="2019-07-26T15:16:00+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-31 13:42:47" itemprop="dateModified" datetime="2019-07-31T13:42:47+08:00">2019-07-31</time>
               
             
           </span>
@@ -718,6 +718,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/27-auto-generate-simulator-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寰宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寰宇小仓库">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/27-auto-generate-simulator-app/" itemprop="url">
+                  生成用于iOS模拟器安装的包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-23 16:22:37" itemprop="dateCreated datePublished" datetime="2018-01-23T16:22:37+08:00">2018-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-15 15:21:27" itemprop="dateModified" datetime="2018-11-15T15:21:27+08:00">2018-11-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/27-auto-generate-simulator-app/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="27-auto-generate-simulator-app/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看打的包的架构类型</span></span><br><span class="line">lipo -info myProject.app/myProject</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切到项目目录</span></span><br><span class="line"><span class="built_in">cd</span> myProject</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一下要用的变量</span></span><br><span class="line">Poj_Path=`<span class="built_in">pwd</span>`</span><br><span class="line">Build_Sim=<span class="variable">$Poj_Path</span>/build/build-Sim/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除每次编译结果</span></span><br><span class="line">rm -rf build/derived/Build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用xcodebuild命令编译用于simulator的*.app包（Release）</span></span><br><span class="line"><span class="comment"># 由于推送sdk没有支持模拟器所以要设置ONLY_ACTIVE_ARCH=YES</span></span><br><span class="line">xcodebuild ONLY_ACTIVE_ARCH=YES -workspace <span class="string">"myProject.xcworkspace"</span> -scheme <span class="string">"myProject"</span> -configuration Release -sdk iphonesimulator -derivedDataPath <span class="string">"build/derived"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"编译失败"</span></span><br><span class="line">	<span class="built_in">exit</span> 1;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 到*.app目录</span></span><br><span class="line"><span class="built_in">cd</span> derived/Build/Products/Release-iphonesimulator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用/usr/libexec/PlistBuddy获取现在的版本号</span></span><br><span class="line">BUILD_VER=$(/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleShortVersionString"</span> myProject.app/Info.plist)</span><br><span class="line">BUILD_CODE=$(/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleVersion"</span> myProject.app/Info.plist)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$BUILD_VER</span> <span class="string">'_'</span> <span class="variable">$BUILD_CODE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建一个文件目录</span></span><br><span class="line">mkdir <span class="variable">$Build_Sim</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 压缩*.app文件到Build_Sim目录下</span></span><br><span class="line">zip -r <span class="variable">$Build_Sim</span>/myProject.app.zip myProject.app</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"压缩失败"</span></span><br><span class="line">	<span class="built_in">exit</span> 1;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"build simulator product success!"</span></span><br><span class="line"><span class="built_in">exit</span> 0;</span><br></pre></td></tr></table></figure>
+<p><img src="http://devhy.com/media/27-auto-generate-simulator-app.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.devhy.com/26-fastlane-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -853,190 +1037,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.devhy.com/27-auto-generate-simulator-app/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="寰宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="寰宇小仓库">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/27-auto-generate-simulator-app/" itemprop="url">
-                  生成用于iOS模拟器安装的包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-23 16:22:37" itemprop="dateCreated datePublished" datetime="2018-01-23T16:22:37+08:00">2018-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-15 15:21:27" itemprop="dateModified" datetime="2018-11-15T15:21:27+08:00">2018-11-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/27-auto-generate-simulator-app/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="27-auto-generate-simulator-app/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看打的包的架构类型</span></span><br><span class="line">lipo -info myProject.app/myProject</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切到项目目录</span></span><br><span class="line"><span class="built_in">cd</span> myProject</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一下要用的变量</span></span><br><span class="line">Poj_Path=`<span class="built_in">pwd</span>`</span><br><span class="line">Build_Sim=<span class="variable">$Poj_Path</span>/build/build-Sim/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除每次编译结果</span></span><br><span class="line">rm -rf build/derived/Build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用xcodebuild命令编译用于simulator的*.app包（Release）</span></span><br><span class="line"><span class="comment"># 由于推送sdk没有支持模拟器所以要设置ONLY_ACTIVE_ARCH=YES</span></span><br><span class="line">xcodebuild ONLY_ACTIVE_ARCH=YES -workspace <span class="string">"myProject.xcworkspace"</span> -scheme <span class="string">"myProject"</span> -configuration Release -sdk iphonesimulator -derivedDataPath <span class="string">"build/derived"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"编译失败"</span></span><br><span class="line">	<span class="built_in">exit</span> 1;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 到*.app目录</span></span><br><span class="line"><span class="built_in">cd</span> derived/Build/Products/Release-iphonesimulator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用/usr/libexec/PlistBuddy获取现在的版本号</span></span><br><span class="line">BUILD_VER=$(/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleShortVersionString"</span> myProject.app/Info.plist)</span><br><span class="line">BUILD_CODE=$(/usr/libexec/PlistBuddy -c <span class="string">"Print CFBundleVersion"</span> myProject.app/Info.plist)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$BUILD_VER</span> <span class="string">'_'</span> <span class="variable">$BUILD_CODE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建一个文件目录</span></span><br><span class="line">mkdir <span class="variable">$Build_Sim</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 压缩*.app文件到Build_Sim目录下</span></span><br><span class="line">zip -r <span class="variable">$Build_Sim</span>/myProject.app.zip myProject.app</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $? -ne 0 ]]; <span class="keyword">then</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"压缩失败"</span></span><br><span class="line">	<span class="built_in">exit</span> 1;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"build simulator product success!"</span></span><br><span class="line"><span class="built_in">exit</span> 0;</span><br></pre></td></tr></table></figure>
-<p><img src="http://devhy.com/media/27-auto-generate-simulator-app.jpg" alt=""></p>
-
-          
         
       
     </div>
